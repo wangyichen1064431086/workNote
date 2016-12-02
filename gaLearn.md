@@ -369,11 +369,161 @@ This parameter allows you to determine how you want bounce rate(弹出率） def
 
 To see data in your Events reports, you need to **add code** to your site or app to collect Event data.
 
-##### Tarcking setup(web)
+##### Tracking setup(web)
 You need to add JavaScript to your site that sends Analytics the details of each Event that is triggered.
 
 Event Tracking documentation
 <https://developers.google.com/analytics/devguides/collection/analyticsjs/events>
+见下Part3 2.2
+
+
+##### Tracking setup(app)
+(暂略，待看）
+
+#### 2.1.3 Unique Events and Unique Dimension Combinations
+<https://support.google.com/analytics/answer/7084499?hl=en&ref_topic=1033067>
+（暂略，待看）
+
+看 3.1.1 Event Flow report
+
+### 2.2 Behavior Flow
+#### 2.2.1 About the Behavior Flow report
+<https://support.google.com/analytics/answer/2785577?hl=en&ref_topic=2996562>
+
+See how your users traverse and interact with your site.
+
+The Behavior Flow report visualizes the path users traveled from one page or Event to the next. This report can help you discover what content keeps users engaged with your site. The Behavior Flow report can also help identify potential content issues.
+###### Requirements
+1. Must have set up be tracking Events before they appear in the Behavior Flow report.
+2. Must have set up **Content Groupings**
+
+（未看完，待接着看）
+
+
+
+## 3. Flow visualiztion reports
+
+### 3.1 Events Flow
+#### 3.1.1 About the Events Flow report
+<https://support.google.com/analytics/answer/2521316?hl=en&ref_topic=2521315>
+
+See how users interact with your site via Events.
+
+Use the Events Flow report to visualize the order in which users trigger the Events on your site. he Events Flow report can help you discover which Event content keeps users engaged with your site, and see the paths users take from one popular Event to the next.
+
+##### prerequisites
+First set up Events.
+
+##### Access the Events Flow report
+**Reporting** tab > **Behavior** > **Events** > **Events Flow**
+
+##### What can I do with the Events Flow report?
+Use the Events Flow Report to investigate questions like:
+
+- Is there an Event that is always triggered first? Does it lead users to more Events?
+- Is there an Event that’s triggered multiple times in a session?
+- Is there a Category of Events that’s more popular than another type of Event - are videos triggered more frequently and lead to more engagement than gadgets?
+- Using Default or Segments, is there a type of user that triggers Events differently than other segments?
+
+##### How to use the Events Flow report?
+###### Some tips
+- Each node in the Events Flow report represents an Event triggered by a user. 
+- All Events in the first column of the flow represent any Event that users triggered before other Events.Events in the second column were triggered second, and so on through the report.
+- Events triggered most frequently appear closer to the top of each column and those triggered less often appear towards the bottom.
+
+###### Change the level of detail
+- Use **level of detail** drop-down menu to change the report display
+- The **Adjust the number of connections displayed in the graph** slider increases or decreases the connections between nodes, giving you a finer- or coarser-grained view of the Events flow.
+- Use the **Select the level of detail for event nodes** options,then you can organize the report by grouping Events into nodes based on Category, Category/Action, or Category/Action/Label.
+
+###### Examine nodes and connections
+- Click a node to display a context menu, letting you investigate traffic flowing to and from a particular Event.
+- Click a connection to highlight only the Events related to that connection.
+
+## 4. Conversion reports（转换）
+In Analytics, a conversion is the completion of an activity that is important to the success of your business, such as a completed sign up for your email newsletter (a Goal conversion) or a purchase (a Transaction, sometimes called an Ecommerce conversion).（在分析中，转换是一个activity的完成，对您的业务的成功很重要，如完成注册电子邮件（一个目标转换），或是一个购买（一个事物，有时被称为电子商务转换）。
+
+
+### 4.1 Goals
+
+#### 4.1.1 Create and manage goals
+<https://support.google.com/analytics/topic/6150889?hl=en&ref_topic=1007030>
+
+##### About goals
+<https://support.google.com/analytics/answer/1012040?hl=en&ref_topic=6150889>
+
+Examples of goals include making a purchase (for an ecommerce site), completing a game level (for a mobile gaming app), or submitting a contact information form (for a marketing or lead generation site).(目标的例子包括购买(对于一个电子商务网站来说),达到一个游戏的level(对于一个手机游戏应用程序来说),或者提交联系人信息(对于一个市场营销或引导网站)。)
+
+
+###### How goals work
+- Goals are configured at the view level.
+-  Goals can be applied to specific pages or screens your users visit, how many pages/screens they view in a session, how long they stay on your site or app, and the events they trigger while they are there.
+-  Every goal can have a monetary value(金钱值）, so you can see how much that conversion is worth to your business. Using values for goals lets you focus on the highest value conversions, such as transactions with a minimum purchase amount.
+-  When a visitor to your site or user of your app performs **an action defined as a goal**, Analytics records that as a conversion. 
+
+###### Goal types
+
+Goal Type | Description | Example
+----------|----------|-------
+Destination|A sepecific location loads(一个特定location的加载）|Thank you for registering! web page or app screen
+Pages/Screens per session(若干时间平均看了多少pages/screens)|A user views a specific number of pages or screens|5 pages or screens have been loaded
+Duration|（待研究）
+Event|（待研究）
+
+###### Smart Goals
+Designed to help AdWords advertisers.
+(暂略，待看）
+
+###### Funnels for Destination goals
+With a Destination goal, you can specify the path you expect traffic to take. (对于一个Destination类型的goal,你可以指定一个你希望流量加载的路径）
+
+This path is called a funnel（漏斗）。
+
+When you specify steps in a funnel, Analytics can record where users enter and exit the path on the way towards your goal.(当你为一个funnel指定steps的时候，Analytics可以记录用户从什么地方进入和退出到达你的目标之前的路径。）
+
+[Funnel Visualization vs. Goal Flow](https://support.google.com/analytics/answer/2976313)
+
+
+###### Goal value
+When you set up a goal, you have the option of assigning a monetary amount to the conversion. Each time the goal is completed by a user, this amount is recorded and then added together and seen in your reports as the Goal Value.
+
+(待继续阅读）
+
+
+
+###### Goal ID and goal sets
+- Every goal you create is assigned a numeric ID, from 1 to 20.(你创建的每个goal都会被分配一个数值的ID,从1~20）
+-  Goals are grouped into sets of up to 5 individual goals.（Goals 可以被分组，每组最多5个单个的goal).
+-  Goal sets allow you to categorize the different types of goals for your site. (Goal的设置允许你将你网站不同类型的goals分类）
+
+
+###### Reporting on goals
+ **Conversion** > **goals**
+
+
+###### Limits of goals
+
+
+
+##### Create, edit, and share goals
+<https://support.google.com/analytics/answer/1032415?hl=en&ref_topic=6150889>
+
+You need **Edit permission** at the view level to perform the tasks or use the features described in this article.(在view层面需要Edit权限）
+
+###### Create a new goal
+1. select ** Admin ** tab, navigate to the desired account,property and view
+2. click **Goals**
+3. click **+NEW GOAL** or **Import from Gallery** to create a new goal
+
+3 basic options for creating goals:
+- using a goal template
+- creating custom goals
+- creating Smart Goals
+
+###### Option1: Goals from a template
+
+
+
 
 
 
