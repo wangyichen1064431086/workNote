@@ -14,16 +14,47 @@
 ## 2.编辑ga
 修改为3步走，我编辑的goal为 14.
 
-## 3.webapp: 左上角退回问题
+## 3.webapp: 安卓硬件回退问题
 ### bug描述
 app苹果, app Chrome模拟的苹果和安卓 都没有问题。情况为，即正确退回路径为文章页→频道页→首页。
 
 app安卓：如果点击顺序为首页→频道页→
 文章页，则点击左上角退回按钮，直接退回到首页。
 
-### 检查进度
-1. 查看相关代码： 
-	- hist数组生成代码： 
+### 修复记录
+#### 1205pm-1206am 查看相关代码： 
+##### （1）hist数组生成代码,即“记录浏览历史”代码：webapp/app/scripts/main.js---1924 readstory函数内部
+
+代码段笔记： webapp-wyc/app/scripts/main_funcs.js 第967行
+	
+
+##### （2） 点击回退按钮事件： webapp/app/scripts/main.js--401行
+	
+	$('.closestory,.back,.backbutton').unbind().bind('click',function() {histback();});
+
+##### （3）histback函数定义： webapp/app/scripts/main.js--401行
+
+代码段笔记： webapp-wyc/app/scripts/main_funcs.js 第1400行
+
+#### 1205am 比较了软硬件退回方式的不同
+- 只有苹果的滑动返回是 文章页→
+频道页→首页，非按照真正的记录来。
+- 其他软件（左上角箭头）返回，和硬件（浏览器返回按钮）返回，都是
+
+#### 1206pm 与强哥协商方法，我这边的代码变动如下：
+1. 在main.js的3121行showchannel函数中添加了 ftjavascriptapp.setandroidurl相关代码段。
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 4.next-signup执行不应该挂起后的任务挂起问题
@@ -45,6 +76,13 @@ mustache仅仅是js模板引擎，这么用：
 
 # 1205
 ## 1.继续解决1204任务3.
+
+## 2. 查看兼容性网站
+卫国推荐：
+
+<http://jscc.info/>
+
+<http://caniuse.com/#search=onpopstate>
 
 
 
