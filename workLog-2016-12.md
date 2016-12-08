@@ -5,7 +5,7 @@
 ## 2.新版登陆测试地址
 <http://app003.ftmailbox.com/androidapp.html?useNewRegForm>
 
-# 1204
+# 1205
 ## 1.必问问题
 1. 来了先问Oliver那个<http://redmine.ftimg.net/login?back_url=http%3A%2F%2Fredmine.ftimg.net%2F>是谁是管理员，让他帮忙通过认证一下。   账号Bonnie
 ——— ***已解决***
@@ -74,7 +74,7 @@ mustache仅仅是js模板引擎，这么用：
 	在浏览器中渲染模板
 
 
-# 1205
+# 1206
 ## 1.继续解决1204任务3.
 
 ## 2. 查看兼容性网站
@@ -83,6 +83,37 @@ mustache仅仅是js模板引擎，这么用：
 <http://jscc.info/>
 
 <http://caniuse.com/#search=onpopstate>
+
+
+# 1207
+## 1.学习卫国哥的next-signup及其其中ES6的写法。
+
+参见《工作收获的前端技巧与经验.md》11.12.
+
+
+## 2.试运行了升级版的NEXT
+### 试运行办法：
+
+NEXT项目的gulp和依赖包都升级到了node 7以上版本，大家可以去试试能不能运行。git pull以后切换分支到git checkout upgradeto7，npm install升级依赖包到最新版，node也换到7.0以上，有可能gulp-sass需要手动安装一下，gulp install gul-sass。安装完以后gulp serve试试能不能运行。README里面有各项gulp任务说明。
+
+成功。
+
+### 新收获：
+
+- 全局gulp#4.0下可以运行gulp3.9的函数。
+- 开服务器本地测试时可能会受浏览器缓存文件的影响。
+
+# 1208
+## 1. 回顾一下SWIFT
+开SWIFT学习会。笔记在xcode的1208NOTE.playground中
+
+## 2. 继续看卫国哥写的next-signup
+
+看到input-validator.js的fetch了。
+
+
+
+
 
 
 

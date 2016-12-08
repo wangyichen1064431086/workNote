@@ -1040,8 +1040,49 @@ JavaScript中命名参数的常用方式是通过对象字面量：
 在ES6中，你可以通过...运算符来声明剩余参数：
 
 	
+### 11 Parameter handling
 
+#### 11.5.3 Simulating Named Parameters in JavaScript(模仿命名参数）
+
+和其他语言不同，JS对于命名参数没有原生支持。但是有一个相当优雅的模拟：每个实参都是一个对象字面量的属性，该对象字面量会作为一个单一的正式的参数传递给别调用函数。
+
+使用该技术时，你可以像这样调用selectEntris函数：
+
+	selectEntries({start:3, end:20, step:2});
+
+这个函数接收一个带有属性start,end,step的对象。你可以省略其中任意属性：
+
+	selectEntries({ step: 2 });
+	selectEntries({ end: 20, start: 3 });
+	selectEntries();
+
+
+在ES5中，你得这样定义selectEntries():
+
+	function selectEntries(options) {
+	    options = options || {};
+	    var start = options.start || 0;
+	    var end = options.end || -1;
+	    var step = options.step || 1;
+	    ···
+	}
+
+在ES6中，你可以使用destructing（解构赋值）来定义，像这样：
+
+	function selectEntries({ start=0, end=-1, step=1 }) {
+	    ···
+	}
+
+但是如果你不带任何参数调用selectEntries()，这个解构赋值就失败了，因为你不能用undefinded来给object赋值。 这个问题可以通过默认值来修复。在下面的code中，如果调用时不带参数的话，这个object会获取{}
 	
+	function selectEntries({start=0,end=-1,step=1}={}){
+	 ...
+	}
+
+你也可以将positional parameters和named parameters一起使用。
+
+	someFunc(posArg1, { namedArg1:7, name2Arg2:true } )
+
 # ES6的类
 
 参见<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes>
