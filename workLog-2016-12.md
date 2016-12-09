@@ -111,6 +111,30 @@ NEXT项目的gulp和依赖包都升级到了node 7以上版本，大家可以去
 
 看到input-validator.js的fetch了。
 
+关于fetch详解，参见《工作收获的前端技巧与经验.md》15.
+
+# 1209
+## 1. 接着看卫国哥的next-signup
+
+## 2. 看Financial-Times的next-signup
+### 1.重点看的文件
+- views/enhanced-experience.html
+- client/main.js
+- client/routes/signup-form/controller.js
+
+
+### 2.写法总结
+#### 1. 使用的模板引擎是handle-bars
+其为mustache的超集，比mustache增添了一些逻辑判断的东西。
+
+然后select元素也就是通过handle-bars循环出来的，不涉及级联什么的。
+
+#### 2. 尽可能地在数据层面而非UI层面操作
+只有在非常必要的时候，才操作UI。而且还一般都是用增添css类的方式来增添UI，尽量不直接操作DOM。
+
+
+## 3.可以看看目前一个特别火的框架Vue.js
+<https://cn.vuejs.org/v2/guide/comparison.html#Riot>
 
 
 
