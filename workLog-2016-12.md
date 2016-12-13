@@ -118,7 +118,7 @@ NEXT项目的gulp和依赖包都升级到了node 7以上版本，大家可以去
 
 ## 2. 看Financial-Times的next-signup
 ### 1.重点看的文件
-- views/enhanced-experience.html
+- views/enhanced -experience.html
 - client/main.js
 - client/routes/signup-form/controller.js
 
@@ -135,6 +135,32 @@ NEXT项目的gulp和依赖包都升级到了node 7以上版本，大家可以去
 
 ## 3.可以看看目前一个特别火的框架Vue.js
 <https://cn.vuejs.org/v2/guide/comparison.html#Riot>
+
+# 1213
+## 1.学习Swift lecture4
+视频已看完。
+
+实战代码目录：Developer/Face
+
+Lecturer 4 Slides.pdf待摘抄到Face中
+
+## 3.帮助卫国哥完成回滚
+svn 回滚方法：
+
+1. 进入项目目录
+2. 右键→ “Tortoise SVN” → “Show log” →
+选择你要回滚的目录→
+右键→
+“revert to this version” →
+“ok"
+3. 回到项目目录→
+“SVN Commit" →
+“ok"
+
+
+## 2.待做祥云的新增专题页任务
+参考： workLog-2016-g.md的“智慧城市”
+
 
 
 
