@@ -167,10 +167,25 @@ svn 回滚方法：
 ## 2. 添加“财富管理”页面
 
 ## 3. 继续看lecture4 PPT并做笔记 Lecture4_view.playground
+笔记做到的第9页
 
 
+# 1215
+## 1. 急救培训 之 包扎止血固定
 
+# 1216
+## 1.新增专题页面“2016年度报告”
 
+广告位id:2002
+
+pageId:2016annualreport
+
+截止日期:2016年12月31日
+
+## 2.修改ft调查页面
+卫国哥的ftc-share:package.json里面少了promisify-node
+
+readme中的引用应该修改为import 'ftc-share' 而非'o-share'
 
 
 

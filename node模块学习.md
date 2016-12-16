@@ -2069,8 +2069,62 @@ rollup的JavaScript API<https://github.com/rollup/rollup/wiki/JavaScript-API>
 Options:
 
 - includes {RegExp[] or RegExp}:本插件将匹配manifest file参数指明的文件，并且只会包含匹配此处正则表达式的文件。
+
+### 65. gulp-nunjucks
+<https://www.npmjs.com/package/gulp-nunjucks>
+#### 简介
+Compile/precompile Nunjucks templates
+
+#### 使用方法
+	const gulp = require('gulp');
+	const nunjucks = require('gulp-nunjucks');
+	 
+	gulp.task('default', () =>
+	    gulp.src('templates/greeting.html')
+	        .pipe(nunjucks.compile({name: 'Sindre'}))
+	        .pipe(gulp.dest('dist'))##  ##
+	);
 	
-	
+
+Can alternatively use gulp-data to inject the data:
+
+	const gulp = require('gulp');
+	const nunjucks = require('gulp-nunjucks');
+	const data = require('gulp-data');
+	 
+	gulp.task('default', () =>
+	    gulp.src('templates/greeting.html')
+	        .pipe(data(() => ({name: 'Sindre'})))
+	        .pipe(nunjucks.compile())
+	        .pipe(gulp.dest('dist'))
+	);
+
+#### API
+##### 1. nunjucks.compile([data],[options])
+
+Compile a template using the provided data.
+######  params
+- data:  
+	- Type: object;
+	- The data object used to populate the text.
+- options: 
+	- Type: object;
+	- Options will be passed directly to the Nunjucks Environment constructor which will be used to compile templates.
+- options.env: 
+	- Type: nunjucks.Environment;
+	- Default: new nunjucks.Environment()
+	- The custom Nunjucks Environment object which will be used to compile templates. If supplied, the rest of options will be ignored.
+
+##### 2. nunjucks.recompile([options])
+类似
+
+### 66.gulp-data
+<https://www.npmjs.com/package/gulp-data>
+
+Generate a data object from a variety of sources: json, front-matter, databases, promises, anything... and set it to the file object for other plugins to consume.
+
+
+		
 
 
 	

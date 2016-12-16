@@ -14,6 +14,13 @@
 
 - \app\templates\html\story.html
 
+### pagemaker:
+<https://backyard.ftchinese.com/pagemaker/page-maker.html?page=2016g20>
+
+必改项：
+
+Full→ title, adid
+
 ### 专题页面
 <http://www.ftchinese.com/tag/智能城市>
 或
@@ -122,3 +129,9 @@
 	- wealthmanage
 	- 广告位ID为1703。
 	- 如果条件里面有结束日期的，这里先设为2017年1月31日（活动1月15日结束）
+
+
+### 4. 页面
+卫国哥的组件库
+<http://interactive.ftchinese.com/components/ftc-share.html>
+
