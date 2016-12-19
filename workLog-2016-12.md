@@ -187,6 +187,19 @@ pageId:2016annualreport
 
 readme中的引用应该修改为import 'ftc-share' 而非'o-share'
 
+# 1219
+## 1. 继续汉化perils-of-perception
+### 1. 学习到了
+1. nunjucks {%- 是去掉空格的意思，详见<https://mozilla.github.io/nunjucks/templating.html#if>。
+2. 在有nunjucks标签的html中，使用<!-- -->注释是会报错的，得用{# #}来注释。详见<https://mozilla.github.io/nunjucks/templating.html#comments>
+3. nunjucks之Filters：过滤器，详见<https://mozilla.github.io/nunjucks/templating.html#template-inheritance>
+
+		{{ foo | title }}
+		{{ foo | join(",") }}
+		{{ foo | replace("foo", "bar") | capitalize }}//display"Bar" finally
+
+### 2.工作进度
+html-head.html逐行检查，汉化，做到了第68行的\<title>
 
 
 
