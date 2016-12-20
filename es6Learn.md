@@ -3,6 +3,7 @@
 <https://developer.mozilla.org>
 
 <http://exploringjs.com/es6/ch_about-book.html>
+<http://exploringjs.com/es6/ch_core-features.html>
 
 <https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20&%20beyond/README.md#you-dont-know-js-es6--beyond>
 
@@ -111,10 +112,37 @@ async function name([param[, param[, ... param]]]) {
 	}
 
 
+### 4.await
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await>
 
+The await operator is used to wait for a promise returned by an async function.
 
+#### 语法
 
+	[rv] = await expression
 
+###### expression
+A promise or any value to wait for the resolution.
+
+###### rv
+
+Returns the resolved value of the promise, or the value itself if it's not a promise.
+
+#### Examples
+
+	function resolveAfter2Seconds(x) {
+	  return new Promise(resolve => {
+	    setTimeout(() => {
+	      resolve(x);
+	    }, 2000);
+	  });
+	}
+	
+	async function f1() {
+	  var x = await resolveAfter2Seconds(10);
+	  console.log(x); // 10
+	}
+	f1();
 
 
 # 阮一峰《ES6标准入门》

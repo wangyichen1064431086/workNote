@@ -201,6 +201,12 @@ readme中的引用应该修改为import 'ftc-share' 而非'o-share'
 ### 2.工作进度
 html-head.html逐行检查，汉化，做到了第68行的\<title>
 
+# 1220
+## 1.继续汉化perils-of-perception
+### 工作进度
+1. 16：00 看到了header.html
+2. 22:28 看到了问卷正文部分，要开始看js了，从client/index.js入手开始看
+
 
 
 
