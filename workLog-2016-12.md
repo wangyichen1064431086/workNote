@@ -207,6 +207,16 @@ html-head.html逐行检查，汉化，做到了第68行的\<title>
 1. 16：00 看到了header.html
 2. 22:28 看到了问卷正文部分，要开始看js了，从client/index.js入手开始看
 
+# 1221
+## 1.继续汉化perils-of-perception
+### 工作进度
+搞明白了question数据的获取方式。
+
+在client/index.js中，其数据是通过fetch('https://ft-ig-content-prod.s3.amazonaws.com/v1/ft-interactive/answer-api/2/2__perils-of-perception-survey-2016__${key}.json')得到
+
+那么我就直接把这个数据下载下来，然后import 该数据即可。
+
+问题：是每个国家的问题都要下载，还是只需要下载中国的？
 
 
 
