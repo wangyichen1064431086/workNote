@@ -207,6 +207,50 @@ html-head.html逐行检查，汉化，做到了第68行的\<title>
 1. 16：00 看到了header.html
 2. 22:28 看到了问卷正文部分，要开始看js了，从client/index.js入手开始看
 
+# 1222
+## 1.继续perils-of-perception
+### 引入ftc-footer
+
+### 学到的
+1. 关于模块
+  可在模块中的package.json使用：
+
+	  "main": "./src/js/data.js",
+
+  指定引用该模块名称时定位到的文件。
+
+
+## 2.暂定明年工作大项
+1. next项目结构
+
+# 1223
+## 1.学习Swiftt
+看lecture5，看到了17:32
+
+## 2.新任务
+制作可视化东西。
+
+<http://datanews.caixin.com/mobile/fang2016/pc/>
+
+## 3.关于perils-of-perception
+### 学到了
+1. babel node
+	
+	node 本身只支持一部分的ES6，不支持ES7。
+
+	在本项目中gulpfile文件的命名方式是gulpfile.babel.js, 即 使该node环境可以完全兼容ES6/7。故遇到类似...obj的spread对象的语句时，自动使用babel进行了转换后才得以顺利运行。
+
+	而在之前的项目中gulpfile文件命名方式就是gulpfile.js，则其不自动使用babel。其是在webpack中使用了babel。
+	
+	***待学习：webpack/babel***
+2. import和require区别
+	- import是ES6的，是动态引用文件，import语句只能写在代码最外层。只有当后文使用到该import进来的模块时，该模块才会被导入，因而会出现本项目 config\index.js中使用await的情况：
+			
+			import article from './article';
+			const d = await article();
+	- require是node的，它是静态引用文件，即在一开始require的时候就已经将模块存入内存中了。故使后文使用该模块时直接用就行。
+	
+3. 
 
 
 

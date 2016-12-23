@@ -144,6 +144,32 @@ Returns the resolved value of the promise, or the value itself if it's not a pro
 	}
 	f1();
 
+### 5. New features of Object Literals
+<http://exploringjs.com/es6/ch_oop-besides-classes.html#_new-object-literal-features>
+
+14.2.2 Property value shorthands
+如果指定属性值的变量名刚好是属性的键，那么你可以省略键。
+
+Eg:
+	
+	const x = 4;
+	const y = 1;
+	const obj = { x, y };
+
+The last line is equivalent to:
+	
+	const obj = { x: x, y: y };
+
+Property value shorthands work well together with destructuring:
+
+	const obj = { x: 4, y: 1 };
+	const {x,y} = obj;
+	console.log(x); // 4
+	console.log(y); // 1
+
+
+
+
 
 # 阮一峰《ES6标准入门》
 ## 1.Promise对象
