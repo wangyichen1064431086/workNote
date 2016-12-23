@@ -250,7 +250,7 @@ html-head.html逐行检查，汉化，做到了第68行的\<title>
 			const d = await article();
 	- require是node的，它是静态引用文件，即在一开始require的时候就已经将模块存入内存中了。故使后文使用该模块时直接用就行。
 	
-3. 
+
 
 
 
