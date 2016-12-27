@@ -251,6 +251,18 @@ html-head.html逐行检查，汉化，做到了第68行的\<title>
 	- require是node的，它是静态引用文件，即在一开始require的时候就已经将模块存入内存中了。故使后文使用该模块时直接用就行。
 	
 
+# 1227
+## 1. 继续复习o-grid
+看到了 o-grid/src/scss/_main.scss的@mixin oGridTargetIE8
+## 2. pull卫国哥的perils-of-perception
+这中间试图安装了一下git-aware-prompt
+
+参见<https://github.com/jimeh/git-aware-prompt>
+
+然而在windows上的安装没有详细说明。
+
+## 3.制作2016好文推荐系列页面
+在<http://backyard.ftchinese.com/>的create inteaactive栏目做。
 
 
 

@@ -55,7 +55,9 @@ cd到自己的项目目录下，执行：
 ##### 浏览器支持
 支持CSS的@media语句和box-sizing的浏览器都支持o-grid。IE8也支持。
 
-##### 实用的class
+##### 实用的属性/class
+- **属性data-o-grid-colspan**
+
 
 	<div class="o-grid-container">
 	    <div class="o-grid-row">
@@ -235,7 +237,7 @@ eg:
 	    }))
 	    .pipe($.sourcemaps.write('./'))
 	    .pipe(gulp.dest(DEST))
-	    .pipe(browserSync.stream({once:true}));browserSync.stream():
+	    .pipe(browserSync.stream({once:true}));
 	});
 
 执行该任务：
@@ -263,10 +265,9 @@ eg:
 	@import 'src/scss/variables';
 	@import 'sass-mq/mq';
 	@import 'src/scss/main';
-
-***这里有一个导入sass-mq/mq，是因为在当前目录下找不到就直接到外层目录找吗？？？***
-
 （该三文件源码解析详见（2）（3）（4）。）
+***这里有一个导入sass-mq/mq，是因为在当前目录下找不到就直接到外层目录找吗？？？***  对的
+
 
 
 输出关于当前layout的debug信息：
@@ -321,9 +322,10 @@ String类型，为$o-grid-layouts的一个值。
 
 ######  Show the currently active breakpoint and output loaded settings
 
-	$o-grid-start-snappy-mode-at: 'M' !default;
+	$o-grid-debug-mode: false !default;
 
-###### Output IE 8-specific rules?
+
+###### Output IE 8-specific rules?（是否输出IE8特定规则的代码）
 值为：
 
 - false:完全不支持IE8
@@ -394,22 +396,60 @@ String类型，为$o-grid-layouts的一个值。
 
 	$_o-grid-scope: 'global';
 
-#### (3)sass-mq/_mq.scss（0804看到这里）
+#### (3)sass-mq
 
 #####  知识补充：sass-mq模块
-sass-mq模块，其mq()函数是一个混合器，用于使得媒介查询操作变得很优雅。参见<https://www.npmjs.com/package/sass-mq>
+sass-mq模块，其mq()函数是一个混合器，用于使得媒介查询操作变得很优雅。参见
+<https://github.com/sass-mq/sass-mq> 
+<https://www.npmjs.com/package/sass-mq>
 
-##### 设置body元素的默认文字尺寸：$mq-base-font-size
+##### README.md简介
+使用basic example:
+
+	$mq-breakpoints: (
+	    mobile:  320px,
+	    tablet:  740px,
+	    desktop: 980px,
+	    wide:    1300px
+	);
+	
+	@import 'mq';
+	
+	.foo {
+	    @include mq($from: mobile, $until: tablet) {
+	        background: red;
+	    }
+	    @include mq($from: tablet) {
+	        background: green;
+	    }
+	}
+
+Compiles to:
+
+	@media (min-width: 20em) and (max-width: 46.24em) {
+	  .foo {
+	    background: red;
+	  }
+	}
+	@media (min-width: 46.25em) {
+	  .foo {
+	    background: green;
+	  }
+	}
+
+更多详见 <https://github.com/sass-mq/sass-mq> 
+##### sass-mq/_mq.scss
+###### 设置body元素的默认文字尺寸：$mq-base-font-size
 
 	$mq-base-font-size: 16px !default;
 
-##### responsive mode(设置是否允许响应式模式):$mq-responsive
+###### responsive mode(设置是否允许响应式模式):$mq-responsive
 	
 	$mq-responsive: true !default;
 
 当将其设置为false时，可兼容不支持@media queries的浏览器(即IE <= 8, Firefox <= 3, Opera <= 9)，然后就可以为不支持@media queries的浏览器设置它们独有的样式。
 
-##### Breakpoint list（断点列表）：$mq-breakpoints
+###### Breakpoint list（断点列表）：$mq-breakpoints
 为你的breakpoints(设备尺寸分割点）命名，以一种在团队成员间建立一个普遍存在的语言的方式。这会提升股东、设计师、开发者、测试之间的沟通。
 
 type:Map
@@ -422,28 +462,28 @@ type:Map
 	) !default;
 		
 
-##### Static breakpoint(静态断点，用于固定宽度的layout)：$mq-static-breakpoints
+###### Static breakpoint(静态断点，用于固定宽度的layout)：$mq-static-breakpoints
 定义一个$mq-breakpoints中的breakpoint，其即为定宽layout的目标宽度。（如，当$mq-responsive为false的时候）
 
 type:String
 
 	$mq-static-breakpoint: desktop !default
 	
-##### Show breakpoints in the top right corner(在右上角展示breakpoints)
+###### Show breakpoints in the top right corner(在右上角展示breakpoints)
 在开发过程中，如果你想在你的网站右上角显示当前的breakpoint,就将breakpoints添加到这个list中。***不太懂怎么用？？？***
 
 type:Map
 
 	$mq-show-breakpoints: () !default;
 
-##### Customize the media type （自定义media type)
+###### Customize the media type （自定义media type)
 定制media type（如@media screen 或@media print）,sass-mq默认使@media all(@media all and …)。
 
 type:String
 
 	$mq-media-type: all !default
 
-##### Convert pixels to ems(将px转换为em)
+###### Convert pixels to ems(将px转换为em)
 参数：
 
 - $px -要转换的值，type:Number;
@@ -463,7 +503,7 @@ type:String
 
 基于的是$mq-base-font-size，即默认为16px。
 
-##### Get a breakpoint's width（获取断点宽度值）：@function mq-get-breakpoint-width($name, $breakpoints: $mq-breakpoints)
+###### Get a breakpoint's width（获取断点宽度值）：@function mq-get-breakpoint-width($name, $breakpoints: $mq-breakpoints)
 
 参数： $name-断点名称，是$mq-breakpoints的键之一,type:String
 
@@ -586,7 +626,7 @@ Eg scss:
 	 }
  }
 
-##### Add a breakpoint(添加断点）
+###### Add a breakpoint(添加断点）
 参数：
 
 - $name:type为String,breakpoint的名称
@@ -597,7 +637,7 @@ Eg scss:
 	    $mq-breakpoints: map-merge($mq-breakpoints, $new-breakpoint) !global;
 	}
 
-##### Show the active breakpoint in the top right corner
+###### Show the active breakpoint in the top right corner
 
 参数：
 
