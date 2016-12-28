@@ -264,7 +264,15 @@ html-head.html逐行检查，汉化，做到了第68行的\<title>
 ## 3.制作2016好文推荐系列页面
 在<http://backyard.ftchinese.com/>的create inteaactive栏目做。
 
+# 1228
+## 1.继续学习Swift.
+看到第5课 23：30
 
+## 2. html中有些meta是必须设置的
+如：
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+
+只有这样设置了，高清屏才不会把1个像素弄成2个像素，用户也不会自己放大缩小这个页面。
 
 
 

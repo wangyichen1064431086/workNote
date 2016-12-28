@@ -344,3 +344,10 @@ Example:
 
 ### 2.该方法只能针对display:block元素
 像img这种行内元素是不行的，想要生效，必须设置img的display:block
+
+## 18.关于width:100%
+一般的元素，如header,article,p,div都是content-box.
+
+故width:100%，设置之后是内容部分达到父元素宽度100%,那么padding和margin部分将会溢出。
+
+正确的办法是不要设置width:100%
