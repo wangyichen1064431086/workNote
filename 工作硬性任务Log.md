@@ -131,7 +131,41 @@ Full→ title, adid
 	- 如果条件里面有结束日期的，这里先设为2017年1月31日（活动1月15日结束）
 
 
-### 4. 页面
+## 4. 页面
 卫国哥的组件库
 <http://interactive.ftchinese.com/components/ftc-share.html>
 
+
+## 5. 例行任务之广告管理
+***广告系统待学***
+### 1） 1230  帮销售部解决思科文章的广告id问题
+科技频道<http://www.ftchinese.com/channel/technology.html>
+
+文章<http://www.ftchinese.com/interactive/8429>
+
+#### 问题描述：
+点击文章原先的跳转链接是 http://www.ftchinese.com/interactive/8429#adchannelID=1502。
+
+这里是科技频道对应的广告id。该频道下所有的文章中的广告id都是如此。
+
+网址变为www7，就可以看到广告每个广告位的id。
+
+频道的广告id会覆盖所有该频道下的文章的广告id，所以只有去掉链接的adchannelID才行。
+
+
+#### 解决办法
+1. 在www7打开科技频道页<http://www7.ftchinese.com/channel/technology.html>
+2. 滚到最下方，打开"编辑本页"，即跳转至pagemaker页面
+3. 找到该片文章，里面有一个custom link的input。默认是空白，即自动获取所属频道的广告id。 想要覆盖掉频道id就手动设置一下custom link为不带参数的http://www.ftchinese.com/interactive/8429
+
+ok啦 
+
+## 6.后台制作年度好文推荐分页h5
+### 任务描述
+登录backyard→
+Interactive→
+Create Interactive→
+仿照Admin Interactive的"FT中文网年度好文推荐"的任意一篇文章来制作新的
+
+### 任务记录
+#### 1. 1230:制作"FT中文网年度好文推荐：中国经济"

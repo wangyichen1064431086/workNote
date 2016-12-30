@@ -274,6 +274,33 @@ html-head.html逐行检查，汉化，做到了第68行的\<title>
 
 只有这样设置了，高清屏才不会把1个像素弄成2个像素，用户也不会自己放大缩小这个页面。
 
+# 1229
+## 1.看完了Swift的第5课
+
+## 2.帮销售部解决思科文章的广告id问题
+科技频道<http://www.ftchinese.com/channel/technology.html>
+
+文章<http://www.ftchinese.com/interactive/8429>
+
+### 问题描述：
+点击文章原先的跳转链接是 http://www.ftchinese.com/interactive/8429#adchannelID=1502。
+
+这里是科技频道对应的广告id。该频道下所有的文章中的广告id都是如此。
+
+网址变为www7，就可以看到广告每个广告位的id。
+
+频道的广告id会覆盖所有该频道下的文章的广告id，所以只有去掉链接的adchannelID才行。
+
+
+### 解决办法
+1. 在www7打开科技频道页<http://www7.ftchinese.com/channel/technology.html>
+2. 滚到最下方，打开"编辑本页"，即跳转至pagemaker页面
+3. 找到该片文章，里面有一个custom link的input。默认是空白，即自动获取所属频道的广告id。 想要覆盖掉频道id就手动设置一下custom link为不带参数的http://www.ftchinese.com/interactive/8429
+
+ok啦
+
+## 3. 后台制作年度好文推荐分页h5:中国经济
+
 
 
 
