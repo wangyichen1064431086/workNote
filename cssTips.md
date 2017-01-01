@@ -321,3 +321,33 @@ Fetch API 的Response接口呈现了对一次请求的响应数据
 - Body.blob()：读取 Response对象并且将它设置为已读（因为Responses对象被设置为了 stream 的方式，所以它们只能被读取一次） ,并返回一个被解析为Blob格式的promise对象
 - Body.json()：读取 Response对象并且将它设置为已读（因为Responses对象被设置为了 stream 的方式，所以它们只能被读取一次） ,并返回一个被解析为JSON格式的promise对象
 - Body.text()：读取 Response对象并且将它设置为已读（因为Responses对象被设置为了 stream 的方式，所以它们只能被读取一次） ,并返回一个被解析为USVString格式的promise对象
+
+## 16.margin的折叠
+同级和包含级的两个元素margin会折叠，取最大的margin值
+
+而padding不会折叠
+
+## 17.关于margin:xx auto的居中方法的使用
+
+### 1. max-width设置后只能用该方法
+设置max-width后，设置text-align:center,无法居中。
+
+应该在设置max-width后，使用margin:xx auto来居中。
+
+Example:
+
+	.word {
+		margin:0 auto;
+		width:100%;
+		max-width:600px;
+	}
+
+### 2.该方法只能针对display:block元素
+像img这种行内元素是不行的，想要生效，必须设置img的display:block
+
+## 18.关于width:100%
+一般的元素，如header,article,p,div都是content-box.
+
+故width:100%，设置之后是内容部分达到父元素宽度100%,那么padding和margin部分将会溢出。
+
+正确的办法是不要设置width:100%

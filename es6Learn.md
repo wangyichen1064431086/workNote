@@ -183,6 +183,7 @@ Returns the resolved value of the promise, or the value itself if it's not a pro
 	}
 	f1();
 
+
 ### 5.Arraw functions
 <http://exploringjs.com/es6/ch_arrow-functions.html#ch_arrow-functions>
 #### 1. Overview
@@ -312,6 +313,48 @@ The body of this arrow function is a block with the label bar and the expression
 The body of this arrow function is an expression, an object literal:
 
 		const f = x => ({ bar: 123 })
+
+### 6. New features of Object Literals
+<http://exploringjs.com/es6/ch_oop-besides-classes.html#_new-object-literal-features>
+
+14.2.2 Property value shorthands
+如果指定属性值的变量名刚好是属性的键，那么你可以省略键。
+
+Eg:
+	
+	const x = 4;
+	const y = 1;
+	const obj = { x, y };
+
+The last line is equivalent to:
+	
+	const obj = { x: x, y: y };
+
+Property value shorthands work well together with destructuring:
+
+	const obj = { x: 4, y: 1 };
+	const {x,y} = obj;
+	console.log(x); // 4
+	console.log(y); // 1
+
+
+### 7. 关于ES6的转化问题--babel node
+
+	node 本身只支持一部分的ES6，不支持ES7。
+
+	在本项目中gulpfile文件的命名方式是gulpfile.babel.js, 即 使该node环境可以完全兼容ES6/7。故遇到类似...obj的spread对象的语句时，自动使用babel进行了转换后才得以顺利运行。
+
+	而在之前的项目中gulpfile文件命名方式就是gulpfile.js，则其不自动使用babel。其是在webpack中使用了babel。
+	
+	***待学习：webpack/babel***
+### 8. import和require区别
+	- import是ES6的，是动态引用文件，import语句只能写在代码最外层。只有当后文使用到该import进来的模块时，该模块才会被导入，因而会出现本项目 config\index.js中使用await的情况：
+			
+			import article from './article';
+			const d = await article();
+	- require是node的，它是静态引用文件，即在一开始require的时候就已经将模块存入内存中了。故使后文使用该模块时直接用就行。
+
+
 
 # 阮一峰《ES6标准入门》
 ## 1.Promise对象
