@@ -32,7 +32,7 @@ app安卓：如果点击顺序为首页→频道页→
 	
 	$('.closestory,.back,.backbutton').unbind().bind('click',function() {histback();});
 
-##### （3）histback函数定义： webapp/app/scripts/main.js--401行
+##### （3）histback函数定义： webapp/app/scripts/main.js--3400行
 
 代码段笔记： webapp-wyc/app/scripts/main_funcs.js 第1400行
 
@@ -44,6 +44,7 @@ app安卓：如果点击顺序为首页→频道页→
 #### 1206pm 与强哥协商方法，我这边的代码变动如下：
 1. 在main.js的3121行showchannel函数中添加了 ftjavascriptapp.setandroidurl相关代码段。
 
+#### 0103am 强哥使用histback()函数解决的了回退问题
 
 
 
