@@ -2124,7 +2124,129 @@ Compile a template using the provided data.
 Generate a data object from a variety of sources: json, front-matter, databases, promises, anything... and set it to the file object for other plugins to consume.
 
 
-		
+### 67.node-fetch
+<https://www.npmjs.com/package/node-fetch>
+ 
+A light-weight module that brings window.fetch to node.js and io.js
 
+#### Usage
+1:
+
+	var fetch = require('node-fetch');
+ 
+	// if you are on node v0.10, set a Promise library first, eg. 
+	// fetch.Promise = require('bluebird'); 
+	 
+	// plain text or html 
+	 
+	fetch('https://github.com/')
+	    .then(function(res) {
+	        return res.text();
+	    }).then(function(body) {
+	        console.log(body);
+	    });	
+	
+
+2:
+
+	var co = require('co');
+	co(function *() {
+	    var res = yield fetch('https://api.github.com/users/github');
+	    var json = yield res.json();
+	    console.log(res);
+	});
+
+
+#### API
+- fetch(url, options)
+
+Returns a Promise
+
+### 68. mkdirp
+<https://www.npmjs.com/package/mkdirp>
+
+递归地mkdir。
+
+#### Usage
+
+	var mkdirp = require('mkdirp');
+	    
+	mkdirp('/tmp/foo/bar/baz', function (err) {
+	    if (err) console.error(err)
+	    else console.log('pow!')
+	});
+
+And now /tmp/foo/bar/baz exists
+
+#### API
+##### mkdirp(dir, opts, cb)
+Create a new directory and any necessary subdirectories at dir with octal permission string opts.mode. If opts is a non-object, it will be treated as the opts.mode.
+
+- cb(err, made) fires with the error or the first directory made that had to be created, if any.
+
+### 69.mz
+<https://www.npmjs.com/package/mz>
+
+Modernize node.js to current ECMAScript standards
+
+node.js will not update their API to ES6+ for a while. This library is a wrapper for various aspects of node.js' API.
+
+### 70. markdown-it
+<https://www.npmjs.com/package/markdown-it>
+
+现代可插拔的markdown解析器。
+
+	// node.js, "classic" way: 
+	var MarkdownIt = require('markdown-it'),
+	    md = new MarkdownIt();
+	var result = md.render('# markdown-it rulezz!');
+	 
+	// node.js, the same, but with sugar: 
+	var md = require('markdown-it')();
+	var result = md.render('# markdown-it rulezz!');
+	 
+	// browser without AMD, added to "window" on script load 
+	// Note, there is no dash in "markdownit". 
+	var md = window.markdownit();
+	var result = md.render('# markdown-it rulezz!');
+	
+	//Single line rendering, without paragraph wrap
+	var md = require('markdown-it')();
+	var result = md.renderInline('__markdown-it__ rulezz!');
+
+Init with presets and options:
+	//
+	var md = require('markdown-it')({
+	  html:         false,        // Enable HTML tags in source 
+	  xhtmlOut:     false,        // Use '/' to close single tags (<br />). 
+	                              // This is only for full CommonMark compatibility. 
+	  breaks:       false,        // Convert '\n' in paragraphs into <br> 
+	  langPrefix:   'language-',  // CSS language prefix for fenced blocks. Can be 
+	                              // useful for external highlighters. 
+	  linkify:      false,        // Autoconvert URL-like text to links 
+	 
+	  highlight: function (/*str, lang*/) { return ''; }
+	});
+
+### 71.nunjucks-markdown
+<https://www.npmjs.com/package/markdown-tag>
+
+针对nunjucks的markdown扩展。
+
+#### Usage
+	var nunjucks = require('nunjucks'),
+	    markdown = require('nunjucks-markdown'),
+
+	function md(str, inline) {
+	  return !str ? '' :
+	    (inline ? markdownIt.renderInline(str) : markdownIt.render(str));
+	    //如果str不存在，则返回''；如果str存在，则返回后面的情况。
+	    //对于后面的，如果inline存在，使用grenderInline方法渲染str；如果inline不存在，则使用render方法渲染。
+	}
+	 
+	var env = nunjucks.configure('views');
+	 
+	// The second argument can be any function that renders markdown
+	markdown.register(env, md);
 
 	

@@ -11,6 +11,8 @@
 
 
 ### 1.fetch
+<https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
+
 GlobalFetch的fetch()方法用于发起获取资源的请求。
 
 它返回一个**promise**,这个promise会在请求响应后被resolve,并传回Response对象。
@@ -66,7 +68,10 @@ GlobalFetch的fetch()方法用于发起获取资源的请求。
 	}
 
 
-
+#### 补充说明：
+- fetch最开始是浏览器的东西，然后通过node-fetch可以用到node端
+- fetch在浏览器端的跨域规则是和Ajax一样的，所有的浏览器端的跨域请求能否实现是由其被请求的服务器决定的
+- 在后端不涉及跨不跨域的问题， 在node端可以随便请求任何url.
 ### 2.yield
 
 针对生成器函数。
