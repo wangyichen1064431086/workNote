@@ -414,7 +414,10 @@ type string or function,规定目标文件目录，和gulp.dest()一样。
 ##### 参数options
 - cwd
 - extension:目标文件的扩展名
-- hasChanged: type function,默认为changed.compareLastModifiedTime，是一个用于决定源文件和目标文件是否相同的函数。
+- hasChanged: type function,默认为changed.
+- 
+- 
+- mpareLastModifiedTime，是一个用于决定源文件和目标文件是否相同的函数。
 
 ### 9.gulp-plumber
 防止管道因为来自gulp插件的错误而导致的中断。
@@ -1898,6 +1901,16 @@ Output
 	pow!
 
 And now /tmp/foo/bar/baz exists, huzzah!
+#### API
+##### mkdirp(dir, opts, cb)
+Create a new directory and any necessary subdirectories at dir with octal permission string opts.mode.
+
+- opts: If opts is a non-object, it will be treated as the opts.mode.If opts.mode isn't specified, it defaults to 0777 & (~process.umask()).
+
+- cb(err, made)： fires with the error or the first directory made that had to be created, if any.
+
+You can optionally pass in an alternate fs implementation by passing in opts.fs. Your implementation should have opts.fs.mkdir(path, mode, cb) and opts.fs.stat(path, cb).
+
 
 ### 56.gulp-load-plugins
 <https://www.npmjs.com/package/gulp-load-plugins>
@@ -2249,4 +2262,39 @@ Init with presets and options:
 	// The second argument can be any function that renders markdown
 	markdown.register(env, md);
 
-	
+
+### 72.模块co
+<https://www.npmjs.com/package/co>
+
+基于生成器的针对nodejs和browser的控制流，使用promises,使得你可以写非阻塞的代码。
+
+#### 用法Eg:
+
+	co(function* () {
+	  var result = yield Promise.resolve(true);
+	  return result;
+	}).then(function (value) {
+	  console.log(value);
+	}, function (err) {
+	  console.error(err.stack);
+	});
+
+
+### 73. deepmerge
+<https://www.npmjs.com/package/deepmerge>
+
+深度合并JavaScript Objects：将二者的属性合并起来。
+
+#### example：
+
+	var x = { foo: { bar: 3 },
+	  array: [ { does: 'work', too: [ 1, 2, 3 ] } ] }
+	var y = { foo: { baz: 4 },
+	  quux: 5,
+	  array: [ { does: 'work', too: [ 4, 5, 6 ] }, { really: 'yes' } ] }
+	 
+	var expected = { foo: { bar: 3, baz: 4 },
+	  array: [ { does: 'work', too: [ 1, 2, 3, 4, 5, 6 ] }, { really: 'yes' } ],
+	  quux: 5 }
+	 
+	merge(x, y) // => expected 

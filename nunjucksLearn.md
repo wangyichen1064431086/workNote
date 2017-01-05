@@ -131,6 +131,19 @@ Environment class is the central object which handles templates. It knows how to
 
 Render the template named ***name*** with the optional ***context*** hash. If callback is supplied, call it when done with any errors and the result (see asynchronous support), otherwise return the rendered string.
 
+#### params
+- name: The name of the template which will be rendered.
+- context: The data which is used for rendering template.
+- callback: If callback is supplied, call it when done with any errors and the result (see asynchronous support)
+
+#### 使用Eg:
+
+	var res = nunjucks.render('foo.html');
+	
+	var res = nunjucks.render('foo.html', { username: 'James' });
+	
+	nunjucks.render('async.html', function(err, res) {
+	});
 ## 8. Loader
 <https://mozilla.github.io/nunjucks/api.html#loader>
 

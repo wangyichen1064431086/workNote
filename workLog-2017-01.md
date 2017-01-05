@@ -22,3 +22,26 @@
 ## 1.看新版的perils-of-perception及新版的ftc-share和ftc-image-share
 
 ### 试着添加广告
+
+# 0105
+## 1.为perils-of-perception添加广告
+
+#### 工作进度：
+ 完成。
+
+#### 成果：
+
+- github:<https://github.com/ftc-editorial/perils-of-perception>
+- 线上服务器同步文件夹：E:/FT/ft-interact
+- 线上地址：<http://interactive.ftchinese.com/perils-of-perception/index.html>
+
+#### 收获
+- iframe不能跨域！！！
+
+- linux上'/'开头的路径表示服务器根目录
+
+## 2.照ftc-share写一遍ftc-share-wyc
+
+
+	 
+	
