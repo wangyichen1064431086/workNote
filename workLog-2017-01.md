@@ -43,5 +43,59 @@
 ## 2.照ftc-share写一遍ftc-share-wyc
 
 
-	 
+
+# 0109
+## 1.开会学习支付逻辑
+笔记：
+
+
+	 Ex盘的的categories
+increase是
+preserveusers
+
+
+load in-App identifiers
+Fetch Product info
+Show in-App UI
+Make Purchase
+Process Transaction
+Make Asset available
+Finish Transaction
+
+
+Payment Queue
+## 2.讨论接下来要做的小程序
+
+
+## 3. 整理frontend/tpl的引用逻辑
+
+孙宇要求：
+
+好多if条件，然后有include，就整理这些
+
+比如这样，
+条件1——
+include文件a
+条件2——
+include文件b
+……
+整理完首页，再整理，a文件、b文件，树状的整理
 	
+## 4.卫国哥帮忙整了一下苹果电脑
+注意事项：
+
+- 不要动所有系统文件，即除了用户目录下其他的文件都不要动！
+- 安装软件都用:
+		
+		brew install
+
+## 5.帆总讲解跟踪
+相关代码段： NEXT\app\scripts\main.js:
+
+- function trackViewables
+- function checkInView
+
+其他还要注意的有：
+
+- 出现时间：1s(根据国际广告什么什么组织的标准）
+
