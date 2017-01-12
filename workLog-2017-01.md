@@ -99,3 +99,17 @@ include文件b
 
 - 出现时间：1s(根据国际广告什么什么组织的标准）
 
+
+# 0112
+## 1. 帆总讲解视频播放的问题
+安装charles,可在电脑上追踪手机版的load情况。
+
+## 2. 继续整理dev_www结构
+整理 frontend/tpl/tag.html
+
+## 3. 卫国哥在开发微信小程序中遇到的问题讨论
+### 1.关于生成用户唯一标识符：
+
+使用专门的包：<https://github.com/kelektiv/node-uuid>
+
+ga开发者文档中相关篇目：<https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id>
