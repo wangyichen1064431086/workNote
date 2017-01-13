@@ -113,3 +113,31 @@ include文件b
 使用专门的包：<https://github.com/kelektiv/node-uuid>
 
 ga开发者文档中相关篇目：<https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id>
+
+# 0113
+## 1. 基本完成整理dev_www相关页面模板工作
+### 整理工作相关文件夹
+
+放在FT/dev_wwwLearn下
+
+### 整理成果：
+
+- index.svg
+- tag.svg
+- 引用结构整理.html
+
+### 整理工作台
+
+- 绘图1.vsd
+- 引用结构整理.md
+
+### 待做工作
+对着 《工作硬性任务log.md》中的 例行任务 之 添加页面模板
+
+## 2. 帮忙预览卫国哥写的小程序
+项目github: <https://github.com/FTChinese/today-focus>
+
+本地目录： FT/today-focus
+
+## 3. 帮书华上传了perils-of-perceptions
+
