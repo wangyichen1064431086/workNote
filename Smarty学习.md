@@ -1,6 +1,10 @@
 # Smarty学习笔记
 smarty网站：<http://www.smarty.net/>
 
+
+php文档：<>
+
+php函数参考：<http://php.net/manual/zh/funcref.php>
 # 关于Smarty
 
 ## What is Smarty?
@@ -34,6 +38,7 @@ Smarty是PHP的模板引擎，使得呈现(HTML/CSS)与应用逻辑相分离。�
 
 # Smarty3中文手册
 <http://www.smarty.net/docs/zh_CN/>
+
 
 ## Smarty变量
 <http://www.smarty.net/docs/zh_CN/language.syntax.variables.tpl>
