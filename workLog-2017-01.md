@@ -172,6 +172,15 @@ bug:
 ### 明日安排
 - 将首页mannual.html的图画完。
 
+# 0119
+## 1.继续进行结构整理
+### 进度
+差不多把block.html过了一遍。知道了第一个block右侧的东西是来自于哪里。
+
+### 后续（按优先级）
+1. 把tag.html搞清楚
+2. 细细结合pagemaker整理block.html
+
 
 
 
