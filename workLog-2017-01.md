@@ -181,6 +181,18 @@ bug:
 1. 把tag.html搞清楚
 2. 细细结合pagemaker整理block.html
 
+# 0120
+## 1.着手整理tag.html
+
+### 遇到的重大问题：
+测试环境数据库访问不对
+
+#### 解决：
+www\libs\application\config\database.php
+该文件和dev_www中的对应文件是不一样的：
+
+- www中的database.php地址就直接是ip地址，如第40行"172.27.10.23:3306"
+- dev_www重的database.php地址是需要dns解析的，如第40行为"db1"
 
 
 
