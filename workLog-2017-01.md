@@ -195,4 +195,6 @@ www\libs\application\config\database.php
 - dev_www重的database.php地址是需要dns解析的，如第40行为"db1"
 
 
-
+## 0123
+## 明日任务：
+继续整理block.html
