@@ -6,8 +6,9 @@
 
 - \frontend\tpl\tag.html
 
-- \frontend\tpl\include\story\story.html
+- \frontend\tpl\include\story\story.html（没用）
 - \frontend\tpl\next\html\story.html
+
 - \frontend\tpl\phone\homecontent-source.html
 - \frontend\tpl\phone\nexthome.html
 
