@@ -1,5 +1,8 @@
 # 0207
+
 ## 1.帆总让看的资料
+
+
 大家好，这是关于应用内购买的所有相关资料。
 
 我会先先把一些kick start代码先加到我们的iOS应用的源码中，这样在我休假期间，大家可以review一下。
@@ -26,3 +29,10 @@ https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/ra/ng/users_roles/s
 
 Application Loader
 https://itunesconnect.apple.com/docs/UsingApplicationLoader.pdf
+
+# 0214
+## 1.继续学习go
+参见goLearn系列的md
+
+## 2.克隆了卫国哥的autograph
+<https://github.com/FTChinese/autograph>

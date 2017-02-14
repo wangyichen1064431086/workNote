@@ -1,53 +1,3 @@
-# 资源链接
-## 官网
-<https://golang.org/#>
-## doc
-<https://golang.org/doc/>
-
-
-# Getting Started
-## Install go
-1. Download the msi <https://storage.googleapis.com/golang/go1.7.5.windows-amd64.msi>
-
-2. 点击安装到c:\go
-3. 自动生成环境变量 GOROOT  C:\Go\
-
-## Test Installation
-1. Create a workspace,eg: E:\goWork
-2. 设置环境变量：GOPATH为E:\goWork\
-3. 创建目录E:\goWork\src\github.com\wangyichen1064431086\hello
-4. 在该目录下创建文件hello.go,内容为：
-
-		package main
-		
-		import "fmt"
-		
-		func main(){
-			fmt.Printf("hello,world\n")
-		}
-
-5. compile it with the go tool:
-
-		C:\> go install \github.com\wangyichen1064431086\hello
-
-6. 执行编译结果：
-
-		C:\> E:\goWork\bin\hello
-
-	得到：
-		hello,world
-
-# A Tour of Go(官网Featured video视频笔记)
-## What is Go?
-- Concurrent(并发的),garbage-collected,builds fast at scale.
-
-		The private motivation for doing a new language was to create something that can handle the scale of programming that we have a google both in a number of lines of code and number of engineers working on the code.
-
-- Fast,Fun, Productive language.
-- Go approached interfaces
-- Go support for reflection on types and values
-- Go support for concurrency
-
 # How to Write Go Code
 <https://golang.org/doc/code.html>
 ## Code organization
@@ -76,12 +26,50 @@ An import path 是一个字符串，独一无二地定义了一个package。一�
 ### First Library
 见E:/goWork/src/github.com/wangyichen10644321086/stringutil/stringutil.go
 
+compiles:
+
+	C:\> go build github.com/user/stringutil
+
+Or, if you are working in the package's source directory, just:
+
+	go build
+
+
+**NOTE:This won't produce an output file. To do that, you must use go install, which places the package object inside the pkg directory of the workspace.(go build并不产生新文件，只有使用go install才会在pkg目录下生成。)**
+
+修改 hello.go 为：
+
+	package main
+
+	import (
+		"fmt"
+		"github.com/wangyichen1064431086/stringutil"
+	)
+	func main() {
+	    fmt.Printf(stringutil.Reverse("！oG, olleH"))
+	}
+
+执行：
+
+	C:\> go install github.com/user/hello
+
+产生:
+
+- pkg/windows_amd64/github.com/wangyichen1064431086/stringutil.a
+- bin/hello.exe
+
+再执行：
+
+	C:\> E:\goWork\bin\hello
+
+产生文件
+
 ### Package names
 The first statement in a Go source file must be:
 	
 	package name
 
-Executable commands must always use 
+Executable commands must always use (就是可执行文件必须是main而不能用其他name)
 
 	package main.
 
@@ -89,6 +77,14 @@ There is no requirement that package names be unique across all packages linked 
 
 ### Testing
 见E:\goWork\src\github.com\wangyichen1064431086\stringutil\reverse_test.go
+
+#### run:
+
+	go test github.com/wangyichen1064431086/stringutil
+
+you are running the go tool from the package directory, you can omit the package path:
+
+    go test
 
 ### Remote packages
 
