@@ -36,3 +36,8 @@ https://itunesconnect.apple.com/docs/UsingApplicationLoader.pdf
 
 ## 2.克隆了卫国哥的autograph
 <https://github.com/FTChinese/autograph>
+
+# 0215
+## 1.继续学习go
+
+## 2.毕设使用rollup解决了前后端共享代码问题。
