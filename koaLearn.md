@@ -36,7 +36,7 @@
 
 
 ## 二、 modules of koa
-
+<https://github.com/koajs/koa/wiki>
 ### 1. koa-bodyparser模块： 
 解析request body,支持json/form/text类型的request body。
 
@@ -108,3 +108,5 @@ app.use(require('koa-static')(root,opts));
 	app.use(serve('public',{
 		index:false
 	}));
+
+### 5. koa-logger

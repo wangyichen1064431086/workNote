@@ -27,7 +27,7 @@
 
 	C:\> go get github.com/Go-zh/tour/gotour
 
-	C:\>E:\goWork\bin\totour
+	C:\>E:\goWork\bin\gotour
 
 打开： http://127.0.0.1:3999/basics/1
 
@@ -1187,7 +1187,315 @@ Code Eg:
 #### 练习：切片
 暂略
 
-#### Maps
+答案暂为：
+
+	package main
+
+	import "golang.org/x/tour/pic"
+	
+	func Pic(dx, dy int) [][]uint8 {
+		var result [][]uint8
+		for i:=0;i<dy;i++ {
+			for j:=0;j<dx;j++{
+				result[i][j]=uint8(i*j)
+			}
+		}
+		return result
+	}
+	
+	func main() {
+		pic.Show(Pic(2,3))//报错：tmp/sandbox480729997/main.go:16: cannot use Pic(2, 3) (type [][]uint8) as type func(int, int) [][]uint8 in argument to pic.Show
+
+	}
+
+#### Maps（映射）
 A map maps keys to values
 
+映射的零值为 nil 。nil 映射既没有键，也不能添加键。
+
 看到这里了 <https://tour.go-zh.org/moretypes/16>
+
+#### 映射的文法
+
+	package main
+	
+	import "fmt"
+	
+	type Vertex struct {
+		Lat, Long float64
+	}
+	
+	var m = map[string]Vertex{
+		"Bell Labs": Vertex{
+			40.68433, -74.39967,
+		},
+		"Google": Vertex{
+			37.42202, -122.08408,
+		},
+	}
+	
+	var n = map[string]int {
+		"a":1,
+		"b":2,
+	}
+
+	func main() {
+		fmt.Println(m)
+		fmt.Println(n)
+	}
+
+#### 修改映射
+插入或修改元素：
+
+	m[key]= elem
+
+获取元素：
+
+	m[key]
+
+删除元素：
+
+	delete(m,key)
+
+双赋值检查某个键是否存在：
+
+	elem,ok = m[key]
+
+- 若 key 在 m 中， ok 为 true ；否则， ok 为 false 。
+
+- 若 key 不在映射中，那么 elem 是该映射元素类型的零值。
+
+Code Eg:
+
+	package main
+
+	import "fmt"
+	
+	func main() {
+		m := make(map[string]int)
+	
+		m["Answer"] = 42
+		fmt.Println("The value:", m["Answer"])
+	
+		m["Answer"] = 48
+		fmt.Println("The value:", m["Answer"])
+	
+		delete(m, "Answer")
+		fmt.Println("The value:", m["Answer"])
+	
+		v, ok := m["Answer"]//若 v 或 ok 还未声明，你可以使用短变量声明
+		fmt.Println("The value:", v, "Present?", ok)
+		
+		m["Question"] = 1
+		fmt.Println(m["Question"])
+		delete(m,"Question")
+		fmt.Println(m["Question"])
+		k, t := m["Question"]//这里注意不能用短变量再声明一次v,ok
+		fmt.Println(k,t)
+	
+		
+	}
+
+
+#### 练习：映射
+
+<http://127.0.0.1:3999/moretypes/23>
+
+#### 函数值
+函数也是值。它们可以像其它值一样传递。
+
+函数值可以用作函数的参数或返回值。
+
+Code Eg:
+
+	package main
+
+	import (
+		"fmt"
+		"math"
+	)
+	
+	func doing(myfn func(int,int) int) int{
+		return myfn(1,2)
+	}
+
+	func main() {
+		newfn := func(x,y int) int {
+			return x+y
+		}
+		fmt.Println(doing(newfn))//3
+	}
+
+#### 函数的闭包
+Go 函数可以是一个闭包。闭包是一个函数值，它引用了其函数体之外的变量。 该函数可以访问并赋予其引用的变量的值，换句话说，该函数被“绑定”在了这些变量上。
+
+
+Code Eg:
+
+	package main
+
+	import "fmt"
+
+	func multi() func(int) int {
+		prod := 1
+		return func(x int) int {
+			prod = prod*x
+			return prod
+		}
+	}
+
+	func main() {
+		fmt.Println(multi()(2))
+	}
+
+#### 练习：斐波那契闭包
+
+答案：
+
+	package main
+
+	import "fmt"
+	
+
+	func fibonacci() func(int) int {
+		return func(x int) int {
+			if x==0 {
+				return 0
+			} else if x==1{
+				return 1
+			} else {
+				return fibonacci()(x-1)+fibonacci()(x-2)
+			}
+		}
+	}
+	
+	func main() {
+		f := fibonacci()
+		for i := 0; i < 10; i++ {
+			fmt.Println(f(i))
+		}
+	}
+
+## section2 Methods and interfaces
+### 2.1 Methods and interfaces
+
+#### Methods
+Go 没有类。不过你可以为结构体类型定义方法。
+
+方法就是一类带特殊的 接收者 参数的函数。(类似与Class的xxClass.方法）
+
+方法接收者在它自己的参数列表内，位于 func 关键字和方法名之间。
+
+Code Eg:
+
+	package main
+
+	import (
+		"fmt"
+		"math"
+	)
+	
+	type Vertex struct {
+		X, Y float64
+	}
+	
+	func (v Vertex) Abs() float64 {
+		return math.Sqrt(v.X*v.X + v.Y*v.Y)
+	}
+	func (k Vertex) add() float64 {
+		return k.X+k.Y
+	}
+	
+	func add2(k Vertex) float64 {
+	 	return k.X + k.Y	
+	}
+	func main() {
+		v := Vertex{3, 4}
+		fmt.Println(v.Abs())
+		fmt.Println(v.add())
+		fmt.Println(add2(v))
+
+##### 方法即函数
+记住：**方法只是个带接收者参数的函数。** 如上add2就是add的正常函数的写法。
+
+##### 为非结构体类型声明方法
+也可以为非结构体类型声明方法。
+
+如下代码中MyInt类型带有方法Square()。
+
+NOTE:**You can only declare a method with a receiver whose type is defined in the same package as the method. You cannot declare a method with a receiver whose type is defined in another package（就是说被添加方法的类型，和所添加的方法得在同一作用域内定义）**
+
+
+Code Eg:
+
+	package main
+
+	import (
+		"fmt"
+		"math"
+	)
+	
+	type MyFloat float64
+	
+	func (f MyFloat) Abs() float64 {
+		if f < 0 {
+			return float64(-f)
+		}
+		return float64(f)
+	}
+	
+	type MyInt int
+	
+	func (n MyInt) Square() int{
+		return int(n*n)
+	}
+	func main() {
+		f := MyFloat(-math.Sqrt2)
+		fmt.Println(f.Abs())
+		myn :=MyInt(2)
+		fmt.Println(myn.Square())
+	}
+
+
+
+##### 指针接受者
+对于某类型 T ，接收者的类型可以用 *T 的文法。 （此外， T 不能是像 *int 这样的指针。）
+
+Code Eg:
+
+	package main
+	
+	import (
+		"fmt"
+		"math"
+	)
+	
+	type Vertex struct {
+		X, Y float64
+	}
+	
+	func (v Vertex) Abs() float64 {
+		return math.Sqrt(v.X*v.X + v.Y*v.Y)
+	}
+	
+	func (v *Vertex) Scale(f float64) {
+		v.X = v.X * f//在 结构体指针一节中，可知，如果我们有一个指向结构体的指针 p ，那么可以通过 (*p).X 来访问其字段 X 。 不过这么写太啰嗦了，所以语言也允许我们使用隐式间接引用，直接写 p.X 就可以。
+		v.Y = v.Y * f
+	}
+	
+	func (v *Vertex) Division(n float64) {
+		v.X = v.X/n
+		v.Y = v.Y/n
+	}
+	
+	func main() {
+		v := Vertex{3, 4}
+		v.Scale(10)
+		v.Division(2)
+		fmt.Println(v.Abs())
+	}
+
+
+##### 指针与函数
+- 带指针参数的函数必须接受一个指针
+- 以指针为接收者的方法被调用时，接收者既能为值又能为指针
