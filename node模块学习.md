@@ -2298,3 +2298,149 @@ Init with presets and options:
 	  quux: 5 }
 	 
 	merge(x, y) // => expected 
+
+### 74.filesize
+<https://www.npmjs.com/package/filesize>
+
+JavaScript library to generate a human readable String describing the file size
+
+#### Eg:
+
+	filesize(500);                        // "500 B" 
+	filesize(500, {bits: true});          // "4 Kb" 
+	filesize(265318, {base: 10});         // "265.32 kB" 
+	filesize(265318);                     // "259.1 KB" 
+	filesize(265318, {round: 0});         // "259 KB" 
+	filesize(265318, {output: "array"});  // [259.1, "KB"] 
+	filesize(265318, {output: "object"}); // {value: 259.1, suffix: "KB", symbol: "KB"} 
+	filesize(1, {symbols: {B: "Б"}});     // "1 Б" 
+	filesize(1024);                       // "1 KB" 
+	filesize(1024, {exponent: 0});        // "1024 B" 
+	filesize(1024, {output: "exponent"}); // 1 
+	filesize(265318, {standard: "iec"});  // "259.1 KiB" 
+	filesize(265318, {standard: "iec", fullform: true}); // "259.1 kibibytes" 
+	filesize(12, {fullform: true, fullforms: ["байтов"]});  // "12 байтов" 
+
+#### params
+1. <Number> ：float|integer
+2. Option<object>
+	- round:小数位数，default is 2
+
+### 75. speakingurl
+<https://www.npmjs.com/package/speakingurl>
+
+翻译工具。
+
+#### Usage:
+getSlug(input, [options]);
+
+- input:{string} to convert
+- options {object|string} config object or separator string (see below)
+	- separator{string}:default '-'
+	- lang{string|boolean}： default'en'
+		- 'ar' // Arabic
+		- 'az' // Azerbaijani*
+		- 'cs' // Czech
+		- ...
+
+	- ...
+
+#### Eg:
+
+	const getSlug = require('speakingurl');
+
+	var slug;
+ 
+	slug = getSlug("Schöner Titel läßt grüßen!? Bel été !");
+	console.log(slug); // Output: schoener-titel-laesst-grue
+
+### 76. fs-jetpack
+<https://www.npmjs.com/package/fs-jetpack>
+
+比node自带fs要更好的fs system API
+#### Sync & Async
+
+API has the same set of synchronous and asynchronous methods. All **async methods are promise based(异步方法）** (no callbacks).即异步方法返回的是promise,同步方法返回nothing。
+
+
+#### API
+##### write(path,data,[options])
+asynchronous: **writeAsync(path,data,[options])**
+
+Writes data to file. If any parent directory in path doesn't exist it will be created (like mkdir -p).
+
+
+###### arguments:
+- path: path to file.
+- data: data to be written. This could be String, Buffer, Object or Array (if last two used, the data will be outputted into file as JSON).
+- options (optional) Object with possible fields:
+
+	- atomic: (default false) if set to true the file will be written using strategy which is much more resistant to data loss. 
+	- jsonIndent: (defaults to 2) if writing JSON data this tells how many spaces should one indentation have.
+##### returns:
+Nothing.
+
+##### Eg:
+
+	fs.writeAsync(`${graphicsDir}/${filename}`,svgString,'utf8')
+        .then(() => {
+            return {
+                name: filename,
+                size: humanReadableSize(svgString)
+            };
+        });
+	
+### 77.load-json-file
+Read and parse a JSON file
+
+#### Usage
+	const loadJsonFile = require('load-json-file');
+	 
+	loadJsonFile('foo.json').then(json => {
+	    console.log(json);
+	});
+
+#### API
+##### loadJsonFile(filepath)
+Returns a promise for the parsed JSON.
+
+##### loadJsonFile.sync(filepath)
+Returns the parsed JSON.
+
+### 78. write-json-file
+<https://www.npmjs.com/package/write-json-file>
+
+Stringify and write JSON to a file atomically.
+
+#### Usage
+
+	const writeJsonFile = require('write-json-file');
+ 
+	writeJsonFile('foo.json', {foo: true}).then(() => {
+	    console.log('done');
+	});
+
+#### API
+##### writeJsonFile(filepath, data, [options])
+Returns a promise.
+
+##### writeJsonFile.sync(filepath, data, [options])
+
+### 79. got
+Simplified HTTP requests.
+
+A nicer interface to the built-in http module.（node自建http模块的更好的接口）
+
+#### API
+##### got(url,[options])
+Returns a Promise for a response object with a body property, a url property with the request URL or the final URL after redirects, and a requestUrl property with the original request URL.
+###### params
+- url{string|object}: The URL to request or a http.request options object.}
+- options{object}: Any of the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) options.
+
+###### returns
+一个Promise，其response object含有如下properties:
+
+- body:
+- url:  the request URL or the final URL after redirects
+- requestUrl: original request URL
