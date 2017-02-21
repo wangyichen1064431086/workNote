@@ -121,4 +121,7 @@ OK，这样写个简单的说明，就像当初我告诉你加特别报道需要
 <http://www.bear-writer.com/>
 ## 2.继续写autograph
 
+# 0221
+## 1.继续写了不少autograph
+## 2.学习了NEXT的pagemaker相关页面。抄写的学习页面在NEXTLearn
 
