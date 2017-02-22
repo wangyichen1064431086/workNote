@@ -125,3 +125,8 @@ OK，这样写个简单的说明，就像当初我告诉你加特别报道需要
 ## 1.继续写了不少autograph
 ## 2.学习了NEXT的pagemaker相关页面。抄写的学习页面在NEXTLearn
 
+# 0222
+## 1.开始做story页面插入的推荐文章的abtest
+- 看了NEXTLearn/app/scripts/story.js
+
+相关文章数据获取是ft.php的 $relative_story = $this->story->Get_Relative_Story_Lite($story['id']);

@@ -171,3 +171,9 @@ Create Interactive→
 
 ### 任务记录
 #### 1. 1230:制作"FT中文网年度好文推荐：中国经济"
+
+## 7.获取story的接口
+
+<https://backyard.ftchinese.com/falcon.php/homepage/getstoryapi/2017-2-22>
+
+后面是年-月-日 
