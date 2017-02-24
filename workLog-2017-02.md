@@ -130,3 +130,40 @@ OK，这样写个简单的说明，就像当初我告诉你加特别报道需要
 - 看了NEXTLearn/app/scripts/story.js
 
 相关文章数据获取是ft.php的 $relative_story = $this->story->Get_Relative_Story_Lite($story['id']);
+
+# 0224
+## 1.继续做story页面插入推荐文章的abtest
+本地测试已调通，线上接口不知道会不会有问题。
+
+***知识Get:***
+
+1. Post发送的请求数据得是json字符串，不能是对象，要JSON.Stringify(obj)
+2. got包用法示例：
+
+		const fs = require('fs');
+		const got = require('got');
+		
+		got(
+		    'http://www.ftchinese.com/eaclient/apijson.php'
+		,{
+		   method:'Post',
+		   body:{
+		        "head":{
+		            "transactiontype":"10001",
+		            "source":"web"
+		        },
+		        "body":{
+		            "ielement":{
+		                "storyid":"001071438,001071418,001070041,001071454,001071464,001049141,001071477,001055080,001070214,001071210,001070104,001070435",
+		                "withpic":1
+		            }
+		        }
+		    }
+		
+		})
+		.then(res => {
+		    console.log(res.body);
+		})
+		.catch(err => {
+		    console.log("Err:"+err.response.body);
+		});
