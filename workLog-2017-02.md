@@ -167,3 +167,8 @@ OK，这样写个简单的说明，就像当初我告诉你加特别报道需要
 		.catch(err => {
 		    console.log("Err:"+err.response.body);
 		});
+
+
+# 0227
+1. 完成了ABtestForRecommandInstory的对in story的那个元素的In view追踪。
+
