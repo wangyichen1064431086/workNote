@@ -13,6 +13,9 @@ Set up Analytics：<https://support.google.com/analytics#topic=3544906>
 2. googledeveloper document
 <https://developers.google.com/analytics/devguides/collection/analyticsjs/events>
 
+3. googledeveloper document
+api的相关文档在<https://developers.google.com/analytics/devguides/reporting/core/v4/>
+
 # Part1 Set up Analytics （from 帮助中心）
 
 ## 一、[Get started with Analytics](https://support.google.com/analytics/answer/1008015?hl=en&ref_topic=3544906)

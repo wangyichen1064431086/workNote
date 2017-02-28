@@ -170,6 +170,23 @@ OK，这样写个简单的说明，就像当初我告诉你加特别报道需要
 
 
 # 0227
-1. 完成了ABtestForRecommandInstory的对in story的那个元素的In view追踪。
+### 1. 完成了ABtestForRecommandInstory的对in story的那个元素的In view追踪。
 
-2. nodejs规定的js语法规范：<http://nodeguide.com/style.html>
+### 2. nodejs规定的js语法规范：<http://nodeguide.com/style.html>
+
+# 0228
+### 1. ABtestForRecommandInstory
+1. 完成了ga代码编写和整个项目的上线
+
+	- 关于In view事件的跟踪，是先通过对main.js的viewablesInit()进行改写，然后再调用一遍stickyBottomPrepare()(该函数中调用了viewablesInit()),然后在scroll的时候就会自然地继续调用trackViewables()
+	- 关于click事件的跟踪，也是main.js中已经有了, 在692行附近，这里只需设置其ec,ea,el即可。
+
+2. 关于gaAPI
+
+	在NEXT中app/scripts/home-click.js展示了view的可视化。
+
+	相关文档在<https://developers.google.com/analytics/devguides/reporting/core/v4/>
+	
+### 2.新需求
+模版整理的差不多了吧，第二步就是整理Special Report所需要的参数，然后做到Pagemaker里吧
+
