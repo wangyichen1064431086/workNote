@@ -94,3 +94,42 @@ but **false** if run by
 	
 	require('./foo').
 
+## 3. process
+<https://nodejs.org/dist/latest-v6.x/docs/api/process.html>
+
+The process object is a global that provides information about, and control over, the current Node.js process. As a global, it is always available to Node.js applications without using require().
+
+### process.cwd()
+Returns: <String>The current working directory of the Node.js process.
+
+### process.env
+<Object>
+
+The process.env property returns an object containing the user environment. 
+
+**NOTE** It is possible to modify this object, but such modifications will not be reflected outside the Node.js process. 
+
+## 4.Globals
+<https://nodejs.org/dist/latest-v6.x/docs/api/globals.html>
+### __dirname
+<String>
+
+The directory name of the current module. 
+
+注意__dirname与process.cwd()的区别：一个是当前js模块的路径，一个是正在运行的node进程的路径
+
+
+##　５．Path
+<https://nodejs.org/docs/latest/api/path.html>
+
+### path.basename(path[,ext])
+
+Returns: the last portion of a path
+
+eg:
+
+	path.basename('/foo/bar/baz/asdf/quux.html')
+	// Returns: 'quux.html'
+	
+	path.basename('/foo/bar/baz/asdf/quux.html', '.html')
+	// Returns: 'quux'

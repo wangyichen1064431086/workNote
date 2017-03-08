@@ -2389,7 +2389,32 @@ Nothing.
                 size: humanReadableSize(svgString)
             };
         });
-	
+
+#### inspect(path, [options])/inspectAsync(path, [options])
+##### arguments:
+- path: path to inspect.
+- options (optional).
+##### returns:
+
+
+同步：返回一个obj，其包含了关于该文件的如下信息：
+
+	{
+	  name: "my_dir",
+	  type: "file", // possible values: "file", "dir", "symlink" 
+	  size: 123, // size in bytes, this is returned only for files 
+	  // if checksum option was specified: 
+	  md5: '900150983cd24fb0d6963f7d28e17f72',
+	  // if mode option was set to true: 
+	  mode: 33204,
+	  // if times option was set to true: 
+	  accessTime: [object Date],
+	  modifyTime: [object Date],
+	  changeTime: [object Date]
+	}
+		
+异步：返回包含以上obj的resolve的promise
+
 ### 77.load-json-file
 Read and parse a JSON file
 
@@ -2427,6 +2452,8 @@ Returns a promise.
 ##### writeJsonFile.sync(filepath, data, [options])
 
 ### 79. got
+<https://www.npmjs.com/package/got>
+
 Simplified HTTP requests.
 
 A nicer interface to the built-in http module.（node自建http模块的更好的接口）
@@ -2437,6 +2464,7 @@ Returns a Promise for a response object with a body property, a url property wit
 ###### params
 - url{string|object}: The URL to request or a http.request options object.}
 - options{object}: Any of the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) options.
+	- json{boolean}:default-false,Parse response body with JSON.parse and set accept header to application/json.
 
 ###### returns
 一个Promise，其response object含有如下properties:
@@ -2444,3 +2472,43 @@ Returns a Promise for a response object with a body property, a url property wit
 - body:
 - url:  the request URL or the final URL after redirects
 - requestUrl: original request URL
+
+### 80. chalk
+<https://www.npmjs.com/package/chalk>
+
+终端渲染样式的模块。
+
+#### Usage Eg:
+
+	var chalk = require('chalk');
+ 
+	// style a string 
+	chalk.blue('Hello world!');
+	 
+	// combine styled and normal strings 
+	chalk.blue('Hello') + 'World' + chalk.red('!');
+	 
+	// compose multiple styles using the chainable API 
+	chalk.blue.bgRed.bold('Hello world!');
+
+
+### 81.lodash
+<https://www.npmjs.com/package/lodash>
+
+The Lodash library exported as Node.js modules.
+
+### 何谓Lodash?
+<https://lodash.com/>
+
+A modern JavaScript utility library delivering modularity, performance & extras.
+
+就是一个类似jQuery的JavaScript库。
+
+### 82.de
+<https://www.npmjs.com/package/d3>
+
+D3 (or D3.js) is a JavaScript library for visualizing data using web standards. D3 helps you bring data to life using SVG, Canvas and HTML. 
+
+d3官网：
+
+<https://d3js.org/>

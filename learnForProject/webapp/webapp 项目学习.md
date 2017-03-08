@@ -1,6 +1,6 @@
 Github:<https://github.com/FTChinese/webapp>
  
-本地项目：myftwork\webapp
+本地项目：ft\webapp
 
 该项目最后生成一个html（为Android.html)，该html手动拷贝到iPhoneApp项目的supporting下的index.html。
 
@@ -52,6 +52,8 @@ copy the generated HTML file manually and paste into Xcode and Android Studio pr
 
 ### 疑问
 这两种写法啥区别？
+
+MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但最好后端node的就用require不要用import
 
 ## 2.函数 getUrltoFile (urlSource, fileName)
 
