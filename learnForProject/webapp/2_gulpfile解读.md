@@ -29,7 +29,7 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 以GET方式向目标url(urlSource)发出请求得到数据，并将数据写入指定文件（fileName)
 
 (详见《Next项目学习.md》)
-
+```
 	function getUrltoFile (urlSource, fileName) {
 	  var http = require('http');
 	  var url = require('url');
@@ -46,7 +46,7 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 	      //console.log (data);
 	      res.on('end', function () {
 	        var fs = require('fs');
-	        fs.writeFile(fileName, data, function(err) {
+	        fs.writeFile(fileName, data, function(err) {//这里比较悲剧的是node原生的核心模块fs的fs.writeFile不能自动创建文件目录，得手动创建
 	            if(err) {
 	                return console.log(err);
 	            }
@@ -61,6 +61,7 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 	  });
 	  request.end();
 	}
+```
 
 ## 3. 函数 postDatatoFile(urlSource, postData, fileName)
 
@@ -71,17 +72,18 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 ## 4. 任务origami
 向ft的origami网站发送请求请求其o-ft-header、o-table、of-ft-footer等模块得到相关文件数据，然后数据写入'./bower_components/origami/build.js'和'./bower_components/origami/build.scss'。
 
-注意该项目中的bower_components下并无origami这个目录，故该任务应该是没用的。
-
+注意该项目中的bower_components下并无origami这个目录，该目录需要手动创建。
+```
 	gulp.task('origami', function () {
 	  getUrltoFile('http://build.origami.ft.com/bundles/js?modules=o-ft-header@^2.5.15,o-table@^1.6.0', './bower_components/origami/build.js');
 	  getUrltoFile ('http://build.origami.ft.com/bundles/css?modules=o-ft-header@^2.5.15,o-ft-footer@^2.0.4,o-table@^1.6.0', './bower_components/origami/build.scss');
 	});
-
+```
 
 ## 5. 任务ea
 从m.ftchinese.com上下载数据到webapp\app\api中，包括各种html结构、json数据等等。
 
+```
 	gulp.task('ea', function () {
 	
 	  ///定义message对象
@@ -117,7 +119,7 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 
 	  getUrltoFile ('http://m.ftchinese.com/index.php/jsapi/hotstory/1days?', './app/api/hotstory.json');//以GET的方式向该url发出请求，然后返回的数据写入hotstory.json。这个url的内容似乎是“热门文章”的信息数据
 	});
-
+```
 
 ### 疑问
 - 这里 m.ftchinese.com的相关路径中的内容是怎么编辑进去的？是跟我们的backyard那个对接的吗？具体每个路径对应的服务器上的文件是哪些呢？
@@ -130,29 +132,29 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 ### answer From Oliver
 这些请求本来是用于从后台获取数据的，其正常的应该是main.js中采用Ajax动态地从php后台获取数据；但是在本地调试的时候，没有办法执行Ajax，所以就从这个网址获取数据以方便测试的时候看。这个任务不需要每次执行gulp serve的时候执行，只需定期执行一下gulp ea就好了，就是测试的时候有数据能看就行了。
 
-**注意：本地文件可以发送正常的http请求，但没有办法发送Ajax请求** ***待实测***
+**注意：Ajax请求不能跨域，故本地测试就只能请求本地文件** 
 
 ## 6.任务hp
 将主页内容的两个模板homecontent.html和homecontentwide.html拷贝到正式环境dev_www/frontend/tpl/phone目录下。
-
+```
 	gulp.task('hp', () => {
 	  gulp.src('app/api/homecontent.html')
 	    .pipe(gulp.dest('../dev_www/frontend/tpl/phone'));
 	  gulp.src('app/api/homecontentwide.html')
 	    .pipe(gulp.dest('../dev_www/frontend/tpl/phone'));
 	});
-
+```
 ### 说明
 这里的homecontent.html和homecontentwide.html都是5.中从m.ftchinese.com上获取下来的。
 
 ## 7.任务phone
 将app/phone下的所有文件拷贝到dist/phone下。dist不存在，会被自动创建。
-
+```
 	gulp.task('phone', () => {
 	  return gulp.src('app/phone/**/*')
 	    .pipe(gulp.dest('dist/phone'));
 	});
-
+```
 ### 疑问
 - app/phone下的文件都是些什么呢？似乎都是些静态文件图片啊字体啊说明什么的。。这些应该都是事先写好的吧？？
 
@@ -204,18 +206,11 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 	    .pipe(gulp.dest('dist/log'));
 	});
 
-### 疑问
-- app\log下的文件都是些什么呢？analytics.js和ga.js似乎是和谷歌分析相关的文件，应该是谷歌自己提供的文件、不是自己写的吧？？
 
-***dist下存放内容有app\log**
-
-***app\log下的文件ga.js是从m.ftchinese.com上获取下来的，那analytics.js呢**
-
-这个以后遇到了再问
 
 ## 13.任务styles
 处理webapp\app\styles下的main.scss文件,最后生成webapp\.tmp\styles\main.css
-
+```
 	gulp.task('styles', () => {
 	  return gulp.src('app/styles/main.scss')
 	    .pipe($.plumber())
@@ -230,12 +225,13 @@ MARK:已解决：这个是gulpfile.js要带上gulpfile.babel才能执行。但�
 	    .pipe(gulp.dest('.tmp/styles'))
 	    .pipe(reload({stream: true}));
 	});
+```
 ### 说明
 app\styles\main.scss是自己手动写的。
 
 ## 14.任务scripts
 处理app\scripts下的main.js文件，最后生成.tmp\scripts\main.js和.tmp\scripts\main.js.map
-
+```
 	gulp.task('scripts', () => {
 	  return gulp.src('app/scripts/**/*.js')
 	    .pipe($.plumber())
@@ -245,12 +241,13 @@ app\styles\main.scss是自己手动写的。
 	    .pipe(gulp.dest('.tmp/scripts'))
 	    .pipe(reload({stream: true}));
 	});
+```
 ### 说明
 app\scripts\main.js是自己手动写的。
 
 ## 15.函数lint、任务lint和lint:test
 大概就是检查JavaScript有没有在语法上写错的。就是检查app\scripts\main.js和test\spec\main.js
-
+```
 	function lint(files, options) {
 	  return () => {
 	    return gulp.src(files)
@@ -269,15 +266,14 @@ app\scripts\main.js是自己手动写的。
 	
 	gulp.task('lint', lint('app/scripts/**/*.js'));
 	gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
-
+```
 ### 说明
-- 这里涉及了一个新的node模块gulp-eslint,大概就是一个JavaScript的模式检查器。以后再研究
+- 这里涉及了一个新的node模块gulp-eslint,大概就是一个JavaScript的模式检查器。
 
-### 疑问
-- 这块检查JS语法错误的作用可以再像帆总确认一下
 
 ## 16.任务html
 app下html文件→（处理为）dist下html文件
+```
 	gulp.task('html', ['styles', 'scripts'], () => {
 	  return gulp.src('app/*.html')
 	    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))//useref:解析HTML文件中的构建块，以替换未经优化的scripts和stylesheets
@@ -286,6 +282,7 @@ app下html文件→（处理为）dist下html文件
 	    .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
 	    .pipe(gulp.dest('dist'));
 	});
+	```
 ### 疑问
 这里的app\*.html有:
 

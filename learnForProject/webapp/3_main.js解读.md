@@ -12,6 +12,7 @@
 
 
 ## 1.申明各种Global变量
+```
 	var _currentVersion = 1111; //当前的版本号
 	var _localStorage = 0;
 	var exp_times = Math.round(new Date().getTime() / 1000) + 86400;
@@ -65,10 +66,10 @@
 	var gCurrentStoryId = '';
 	var gNoticeAdded = false;
 	var cg1 = '(not set)';
-
+```
 
 ## 2.获取屏幕尺寸并为不同尺寸屏幕设不同的启动页面模板
-	
+```	
 	//开机的时候检查屏幕宽度，以便节约流量
 	//我们的基本假设是，不管横屏还是竖屏，只要宽度小于700，那就是手机；否则就是平板
 	//为了减少资源消耗，在屏幕Resize和Rotate的时候，只是向GA发出流量统计数据，而不做可能消耗资源的操作
@@ -82,9 +83,9 @@
 	} else {
 	    gStartPageTemplate = '/index.php/ft/channel/phonetemplate.html?channel=nexthome&';
 	}
-
+```
 ## 3.设置另一些Global变量
-
+```
 	var gApiUrl = {
 	    'efforts':0,
 	    'a10001':'/index.php/jsapi/get_new_story?rows=25&',
@@ -104,18 +105,19 @@
 	var gSpecialAnchors = [];
 	var gTagData = [];
 	var gIsInSWIFT = false;//标识是否处于在原生iOS中
-
+```
 ## 4.判断是否在原生iOS中运行
-
+```
 	if (window.location.href.indexOf('isInSWIFT')>=0) {//运行时的url里含有'isInSWIFT'的话就说明在原生iOS中运行
 	    gIsInSWIFT = true;
 	}
+```
 
 ### 疑问
 这个规则“运行时的url里含有'isInSWIFT'的话就说明在原生iOS中运行”，应该是在iPhoneApp项目中定义的吧？
 
 ## 5.本地测试
-
+```
 	//在本地测试
 	if (window.location.hostname === 'localhost' || window.location.hostname.indexOf('192.168') === 0 || window.location.hostname.indexOf('10.113') === 0 || window.location.hostname.indexOf('127.0') === 0) {//本机服务器地址的几种形式吧？
 		///在本地测试的话就直接使用本地api下的已经通过gulpfile.js的任务ea准备好了的几个json文件
@@ -140,13 +142,13 @@
 	        gStartPageTemplate = 'api/homecontent.html?';
 	    }
 	}
-
+```
 ### 疑问
 - 本机服务器地址的host不就是'localhost'或'127.0.0.1'吗？为何还有'192.168'或'10.113'这种形式？***待自己研究***
 - 这里本地路径字符串里面干嘛加上"?"? 这种"?"出现在这里的情况是干嘛用的？
 
 ## 6.根据gCustom对象的各属性值为变量赋值
-
+```
 	//选择模板
 	if (typeof window.gCustom === "object") {
 	    if (typeof window.gCustom.template === "string") {
@@ -168,7 +170,7 @@
 	        gPullRefresh = true;
 	    }
 	}
-
+```
 ### 疑问：
 
 - gCustom目测是个全局变量，类型为对象，在什么地方定义的？
@@ -194,7 +196,7 @@
 该对象的这些属性分别是什么意思？
 
 ## 8.定义其他一些全局变量
-
+```
 	var scrollHeight=0, 
 		scrollOverlay=0, //可取值0或1，分别指示有无Overlay的时候的窗口在纵轴上应该往下滚过的距离？？？window.scrollTo(0,scrollOverlay)
 		readingid, 
@@ -251,7 +253,7 @@
 	var gIsSwiping = false;
 	var gMoveState = 0;
 	var gStartPageStorage = '';
-
+```
 ### 疑问
 - swipe这几个值是什么意思？目的是什么？
 - 以上所有打"？？？"的地方***这些可能后面看着看着就明白了***
@@ -264,7 +266,7 @@
 - 此刻的日期——thed:20160819
 - 此刻的秒数——thisdayunix:1474271020 (当前时间的秒数的整数值————by 四舍五入处理 当前时间的毫秒数/1000）
 - 到期时刻的秒数——expiredayunix:1474271020+7776000(到期时间=当前时间+3个月的时间) 3600\*24\*90=7776000
-
+```
 	function updateTimeStamp() {
 	    thisday = new Date();
 
@@ -280,7 +282,7 @@
 
 	    actionTimeStamp=Math.round(thisday.getTime() / 1000);
 	}
-
+```
 ### 补充说明
 
 关于时间方法：
@@ -302,7 +304,7 @@
 - actionTimeStamp
 
 ## 10.函数startpage:启动app
-
+```
 	function startpage() {
 		    var savedhomepage;
 		    updateTimeStamp();//更新时间戳相关变量（详见9.）
@@ -550,7 +552,7 @@
 		        $("html").addClass("show-status-bar");
 		    }
 		}
-
+```
 ### 疑问
 - window.tracker = new FTCTracker();FTCTracker是啥？？
 - useFTScroller是表征是否使用了FT的scroller吗？
@@ -559,11 +561,11 @@
 (定义于app\android.html的第658行或app\index.html的第708行)
 
 修改启动页面“报告问题”a元素的href,即修改打开的邮箱相关信息
-
+```
 	function updateStartStatus(startMessage) {
     	document.getElementById('startFeedback').href='mailto:ftchinese.feedback@gmail.com?subject=Feedback about FTC Web App - ' + startMessage + '&body=%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AMy UA String for Your Reference: %0D%0A%0D%0A' + uaForMail + '%0D%0A%0D%0AResources version: ' + window._currentVersion + '%0D%0A%0D%0AScreen Mode: ' + screen.width + 'X' + screen.height + '%0D%0A%0D%0Amy URL: ' + location.href;
     }
-
+```
 对应html:
 
 	<div class="backuplinks">
@@ -581,7 +583,7 @@
 (定义于本文件，即app\scripts\main.js)
 
 获取指定url（theurl）中的指定参数名(thep)的参数值。
-
+```
 	function getpvalue(theurl, thep) {
 	    var k,thev;
 	    if (theurl.toLowerCase().indexOf(thep + "=")>1) {
