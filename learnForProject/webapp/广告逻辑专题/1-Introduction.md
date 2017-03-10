@@ -39,9 +39,13 @@ line 873
 ```
 
 ## 2.在main.js中定义了函数httpspv
-函数httpspv中调用了函数updateAds();
+### 2.1 函数httpspv中调用了函数updateAds();
 
 函数updateAds()来自trackadview.js。
+### 2.2 函数loadHomePage中通过ajax请求了gStartPageTemplate，
+- 其在本地为'api/homecontent.html'；
+- 在线上为'/index.php/ft/channel/phonetemplate.html?channel='+homeFileName+fullScreenAdPara+'&screentype=wide&'；然后线上还引用了frontend/tpl/phone/nexthome.html
+
 
 ## 3. trackadview.js中定义了函数updateAds
 在其中对某些条件下的iframe 进行了处理：
@@ -50,5 +54,29 @@ line 873
  ```
  即交给phone/ad.html处理。
 
- ## 4.phone/ad.html
+## 4.frontend/tpl/phone/nexthome.html
+有一段关于广告的代码：
+  ```
+  window.gSpecialAnchors = [];
+
+  //MARK:取出页面中的带有specialanchor的class的div(这几个div高度为0，放在移动端DOM的最下方），根据这些di的属性adid、tag、title，得到gSpecialAnchors每一项的值。
+  if ($(".specialanchor").length>0) {
+      $('.specialanchor').each(function(){
+          var adId = $(this).attr('adid') || '';
+          var sTag = $(this).attr('tag') || '';
+          var sTitle = $(this).attr('title') || '';
+          var channelInfo = $(this).attr('channel') || '';
+          if (adId !== '') {
+              gSpecialAnchors.push({
+                  "tag": sTag,
+                  "title": sTitle,
+                  "adid": adId,
+                  "channel": channelInfo
+              });
+          }
+      });
+  }
+</script>
+```
+## 5.phone/ad.html
 
