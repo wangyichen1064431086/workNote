@@ -12,4 +12,5 @@
 ## 3.rollup模块具有将ES6的文件转换为node的功能
 参见 ftc-share 的gulpfile.js的rollup任务。
 
+## 4. gulp.task中一定要return,为什么？return的又必须满足什么条件？？
 

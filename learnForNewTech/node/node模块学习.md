@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### 8.gulp-changed
 只处理改变了的文件。这样就不会在处理没有变化的文件上浪费时间。这个插件默认只能检测文件流中的文件是否改变。
 
@@ -1964,66 +1951,7 @@ getSlug(input, [options]);
 	slug = getSlug("Schöner Titel läßt grüßen!? Bel été !");
 	console.log(slug); // Output: schoener-titel-laesst-grue
 
-### 76. fs-jetpack
-<https://www.npmjs.com/package/fs-jetpack>
 
-比node自带fs要更好的fs system API
-#### Sync & Async
-
-API has the same set of synchronous and asynchronous methods. All **async methods are promise based(异步方法）** (no callbacks).即异步方法返回的是promise,同步方法返回nothing。
-
-
-#### API
-##### write(path,data,[options])
-asynchronous: **writeAsync(path,data,[options])**
-
-Writes data to file. If any parent directory in path doesn't exist it will be created (like mkdir -p).
-
-
-###### arguments:
-- path: path to file.
-- data: data to be written. This could be String, Buffer, Object or Array (if last two used, the data will be outputted into file as JSON).
-- options (optional) Object with possible fields:
-
-	- atomic: (default false) if set to true the file will be written using strategy which is much more resistant to data loss. 
-	- jsonIndent: (defaults to 2) if writing JSON data this tells how many spaces should one indentation have.
-##### returns:
-Nothing.
-
-##### Eg:
-
-	fs.writeAsync(`${graphicsDir}/${filename}`,svgString,'utf8')
-        .then(() => {
-            return {
-                name: filename,
-                size: humanReadableSize(svgString)
-            };
-        });
-
-#### inspect(path, [options])/inspectAsync(path, [options])
-##### arguments:
-- path: path to inspect.
-- options (optional).
-##### returns:
-
-
-同步：返回一个obj，其包含了关于该文件的如下信息：
-
-	{
-	  name: "my_dir",
-	  type: "file", // possible values: "file", "dir", "symlink" 
-	  size: 123, // size in bytes, this is returned only for files 
-	  // if checksum option was specified: 
-	  md5: '900150983cd24fb0d6963f7d28e17f72',
-	  // if mode option was set to true: 
-	  mode: 33204,
-	  // if times option was set to true: 
-	  accessTime: [object Date],
-	  modifyTime: [object Date],
-	  changeTime: [object Date]
-	}
-		
-异步：返回包含以上obj的resolve的promise
 
 ### 77.load-json-file
 Read and parse a JSON file
