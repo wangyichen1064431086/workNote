@@ -1989,27 +1989,6 @@ Returns a promise.
 
 ##### writeJsonFile.sync(filepath, data, [options])
 
-### 79. got
-<https://www.npmjs.com/package/got>
-
-Simplified HTTP requests.
-
-A nicer interface to the built-in http module.（node自建http模块的更好的接口）
-
-#### API
-##### got(url,[options])
-Returns a Promise for a response object with a body property, a url property with the request URL or the final URL after redirects, and a requestUrl property with the original request URL.
-###### params
-- url{string|object}: The URL to request or a http.request options object.}
-- options{object}: Any of the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) options.
-	- json{boolean}:default-false,Parse response body with JSON.parse and set accept header to application/json.
-
-###### returns
-一个Promise，其response object含有如下properties:
-
-- body:
-- url:  the request URL or the final URL after redirects
-- requestUrl: original request URL
 
 ### 80. chalk
 <https://www.npmjs.com/package/chalk>
