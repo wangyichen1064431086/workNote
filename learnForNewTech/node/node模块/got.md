@@ -31,3 +31,15 @@ Returns a Promise for a response object with a body property, a url property wit
 - body:
 - url:  the request URL or the final URL after redirects
 - requestUrl: original request URL
+
+#### Streams
+##### got.stream(url,[options])
+stream method will return Duplex(两倍的) stream with additional events:
+##### .on('request',request):
+request event to get the request object of the request.
+
+##### .on('response', response)
+response event to get the response object of the final request.
+
+##### .on('redirect', response, nextOptions)
+Redirect event to get the response object of a redirect. The second argument is options for the next request to the redirect location.

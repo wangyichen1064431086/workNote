@@ -16,9 +16,14 @@ Set up Analytics：<https://support.google.com/analytics#topic=3544906>
 3. googledeveloper document
 api的相关文档在<https://developers.google.com/analytics/devguides/reporting/core/v4/>
 
-底层地址的相关文档：
+底层地址发送ga的相关文档：
 <https://developers.google.com/analytics/devguides/collection/protocol/v1/>
 
+Google API Client Libraries：
+<https://developers.google.com/api-client-library/javascript/>
+
+Google identify platform:
+<https://developers.google.com/identity/>
 # Part1 Set up Analytics （from 帮助中心）
 
 ## 一、[Get started with Analytics](https://support.google.com/analytics/answer/1008015?hl=en&ref_topic=3544906)
