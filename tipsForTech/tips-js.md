@@ -17,3 +17,4 @@
 
 **这里的参数element是DOM对象非jQuery对象，故要使用$(DOM对象)来将其转换成jQuery对象**
         
+## 3.现在浏览器已经支持除了export/import之外的es6了。
