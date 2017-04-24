@@ -42,6 +42,7 @@ line 873
 ### 2.1 函数httpspv中调用了函数updateAds();
 
 函数updateAds()来自trackadview.js。
+
 ### 2.2 函数loadHomePage中通过ajax请求了gStartPageTemplate，
 - 其在本地为'api/homecontent.html'；
 - 在线上为'/index.php/ft/channel/phonetemplate.html?channel='+homeFileName+fullScreenAdPara+'&screentype=wide&'；然后线上还引用了frontend/tpl/phone/nexthome.html
