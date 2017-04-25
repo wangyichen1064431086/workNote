@@ -4,16 +4,16 @@
 <head>
 <meta charset='utf-8' />
 <style>
-.adunit {display:block;border:1px solide #000;width:300px;}
-.mpu {height:250px;width:300px;overflow:hidden;}
-.halfpage {height:600px;width:300px;overflow:hidden;}
-.ad50,.ad90{width:100%;overflow:hidden;display:table;}
-.ad90.fullWidth {width:auto;}
-.ad50 a,.ad90 a {display:table-cell;vertical-align:middle;}
-.ad50 {height:auto;}
-.ad90 {height:90px;}
-.hidden {display:none;}
-img {border:0;max-width:100%;}
+    .adunit {display:block;border:1px solide #000;width:300px;}
+    .mpu {height:250px;width:300px;overflow:hidden;}
+    .halfpage {height:600px;width:300px;overflow:hidden;}
+    .ad50,.ad90{width:100%;overflow:hidden;display:table;}
+    .ad90.fullWidth {width:auto;}
+    .ad50 a,.ad90 a {display:table-cell;vertical-align:middle;}
+    .ad50 {height:auto;}
+    .ad90 {height:90px;}
+    .hidden {display:none;}
+    img {border:0;max-width:100%;}
 </style>
 </head>
 
@@ -23,17 +23,18 @@ img {border:0;max-width:100%;}
 function GetCookie(name){
     var start = document.cookie.indexOf(name+"="),
         len = start+name.length+1,
-        end = document.cookie.indexOf(";",len);//从=后面开始进行indexOf搜索
+        end = document.cookie.indexOf(";",len);//从=后面开始进行indexOf搜索":"的位置
     if ((!start) && (name !== document.cookie.substring(0,name.length))) {
-        //排除start为0但cookie的前name.length位并不是name的情况。
+        //MARK:排除start为0但cookie的前name.length位并不是name的情况。
         //QUEST:这种情况可能出现吗？这是什么情况？
         return null;
     }
     if (start === -1) {
-        //排除cookie中不含该name键的情况
+        //MARK:排除cookie中不含该name键的情况
         return null;
     }
     if (end === -1) {
+        //MARK：考虑最后一个cookie没有分号 这种情况
         end = document.cookie.length; 
     }
     return decodeURIComponent(document.cookie.substring(len,end));
@@ -52,16 +53,15 @@ function adReachability() {
   for (var k in thirdPartyVendors) {//for...in..迭代的包括自身的和继承来的属性
       if (thirdPartyVendors.hasOwnProperty(k)) {
          //如果k是thirdPartyVendors的自身属性
-         adReachabilityStatus = GetCookie(k);//获取当前cookie中以k为键的值
+         adReachabilityStatus = GetCookie(k);//获取当前cookie中以k为键的值，以k = 'dcR'为例
          if (adReachabilityStatus === 'reachable') {//如果当前cookie中键k的值为'reachable'
           adParameter += '&' + thirdPartyVendors[k] + '=1';
-         } else if (adReachabilityStatus === null) {
+         } else if (adReachabilityStatus === null) {//如果当前cookie中键k的值为null
           adParameter += '&' + thirdPartyVendors[k] + '=2';
          }
-      }
+      }//这里亲测cookie的值为'dcR'、'mmR'、'szR'、'amR'的值都为null,故最后得到的adParameter的值应该为 &_dc=2&_mm=2&_sz=2&_am=2
   }
-//  console.log (adParameter);
-  return adParameter;//eg:'&_dc=2&_mm=2&_sz=2&_am=2'
+  return adParameter;//得到的是'&_dc=2&_mm=2&_sz=2&_am=2'
   //QUEST:这些参数，_dc、_mm、_sz、_am的意义分别是什么？
 }
 
@@ -78,23 +78,26 @@ var uaString=navigator.userAgent || navigator.vendor || "",
 var matchSpecial = false;
 var gSpecialAdId = '';//MARK：如果当前页面允许调用特别报道的广告代码，则该变量用于存储该特别报道的广告代码id
 var gAdContent;
-var parentLink = window.parent.location.href;//window.parent返回当前iframe窗口的父窗口对象
-var testFullPage = false;//该变量表示是否来测试fullpagead,如果父页面url中含参数testfullpagead则testFullPage为true
+var parentLink = window.parent.location.href;//window.parent返回当前iframe窗口的父窗口对象，这里是该iframe指向的这个文件的父窗口的href值
+
+var testFullPage = false;//MARK:该变量表示是否来测试fullpagead,如果父页面url中含参数testfullpagead则testFullPage为true
 if (parentLink.indexOf('testfullpagead') > 0) {
     //如果父window的url包含testfullpagead字样
     testFullPage = true;
 }
 
+//MARK:k=window.location.href，即k为当前iframe的url ,eg:http://localhost:9000/phone/ad.html?isad=0&v=1142#adtype=ad300&adid=fullbody0
 adCode=k.replace(/^.*adtype=([0-9A-Za-z\-]+).*$/,"$1");//ad300
 adId=k.replace(/^.*adid=([0-9A-Za-z]+).*$/,"$1");//fullbody0
 
 
-//QUEST:adCode、c、adType分别都是什么具体意义？
-/* adcode似乎是广告类型？
-*/
 if (adCode=="ad300x250-SP" || (parent.window.gSpecial === true && adCode==="ad300x250-2")) {//code for special report VFTT
+    //MARK:gSpecial表示是否为特别报道
     c="20400004";
     adType="mpu";
+    //QUEST:adCode表示的是广告类型（eg:ad300）？adId表示的是广告位置(eg:fullbody0)？c呢（eg:2040003)？adType才是广告类型(eg:halfpage),它和adCode的区别和联系？
+    //QUEST:这些字段似乎最开始是就是来自于页面html中的拥有样式.adiframe的div的属性（参见trackadviews.js中函数updateAd中"currentViewPortAds.each(...)那一段）？
+
 } else if (adCode=="ad300x600-SP" || (parent.window.gSpecial === true && adCode==="ad300x600")) {
     c="20400003";
     adType="halfpage";
