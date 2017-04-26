@@ -151,4 +151,13 @@ line113:定义本地测试状态下的宽屏和正常屏的gStartPageTemplate
 </script>
 ```
 ## 5.phone/ad.html
+这个详见***《3-ad.html》***
 
+其中有向传漾服务器请求一段代码，见《3-ad.html》的line299:
+
+```
+    var dolphineInlineScript = ...<script src = 'http://dolphin.ftimg.net/s?z=ft&c=.....'></script>
+```
+其实就是去传漾的系统里面根据src的参数找到相应的代码模板片段（对于每个广告位，都会请求到一段来自传漾的对应广告的script代码片段）。该script片段负责:
+1. 导入广告img、长、宽等关于广告内容信息的数据（在该片段模板中以变量形式存在，然后需要销售手动输入）
+2. 向传漾服务器发送图像ping以统计广告被看到的次数（在该片段模板中以公共部分的形式存在）。

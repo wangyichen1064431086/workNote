@@ -95,15 +95,23 @@ if (adCode=="ad300x250-SP" || (parent.window.gSpecial === true && adCode==="ad30
     //MARK:gSpecial表示是否为特别报道
     c="20400004";
     adType="mpu";
-    //QUEST:adCode表示的是广告类型（eg:ad300）？adId表示的是广告位置(eg:fullbody0)？c呢（eg:2040003)？adType才是广告类型(eg:halfpage),它和adCode的区别和联系？
-    //QUEST:这些字段似乎最开始是就是来自于页面html中的拥有样式.adiframe的div的属性（参见trackadviews.js中函数updateAd中"currentViewPortAds.each(...)那一段）？
+    //QUEST:adCode表示的是广告类型（eg:ad300）？adId表示的是广告位置(eg:fullbody0)？c呢（eg:2040003)？adType才是广告类型(eg:halfpage),它和adCode的区别和联系？看下面的条件语句，一会儿adCode决定c和adType,一会儿adCode决定adPositionId、adPositionId和adChannelId又一起决定c。。。。
+    //QUEST：对关于广告的以下属性的含义进行整理：
+        /** 
+         * adCode:
+         * adType:
+         * adchannelId:
+         * adPositionId:
+         * c:
+         * 对应广告描述：
+        */
+    //QUEST:这些字段似乎最开始是就是来自于页面html中的拥有样式.adiframe的div的属性（参见trackadviews.js中函数updateAd中"currentViewPortAds.each(...)那一段）,但是页面中的这些adiframe样式的div在哪个html中写着？index.html和Android.html中都和正式环境console出来的不一样？
 
 } else if (adCode=="ad300x600-SP" || (parent.window.gSpecial === true && adCode==="ad300x600")) {
     c="20400003";
     adType="halfpage";
 } else if (adCode=="ad300x600") {
     c="20210005";
-    //c="20210003";
     adType="halfpage";
 } else if (adCode=="ad300x600-2") {
     c="20210106";
@@ -179,6 +187,7 @@ if (adCode=="ad300x250-SP" || (parent.window.gSpecial === true && adCode==="ad30
 
 if (/iPad/i.test(uaString)) {
     if (adType === 'mpu') {
+        //MARK：如果adType为mpu，则将body的背景色设置为浅浅粉
         document.body.style.backgroundColor = '#f6e9d8';
     }
 }
@@ -232,17 +241,20 @@ if (parent.window.gSpecialAnchors && parent.window.gSpecialAnchors.length > 0 &&
         }
 
         if (useSpecialCode === true && keywordsOfCurrentPage.indexOf(keywordForCheck) >=0) {
-            //MARK:如果允许调用特别报道的广告代码，且当前页面的所有tag包含上述得到的keywordForCheck,则gSpecialAdId为gSpecialAnchors[i].adid
+            /** MARK:如果允许调用特别报道的广告代码，且当前页面的所有tag包含上述得到的keywordForCheck（parent.window.gSpecialAnchors[i].tag）,则：
+             * gSpecialAdId赋值为gSpecialAnchors[i].adid，
+             * matchSpecial赋值为true
+             */
             gSpecialAdId = parent.window.gSpecialAnchors[i].adid;
             matchSpecial = true;
         }
     }
 }
-//console.log (adCode);
 
-// MARK:-检查gSpecialAdId，如果其有值，则进行如下处理：
+// MARK:-检查gSpecialAdId和matchSpecial，如果其有值，则进行如下处理：
 if (gSpecialAdId !== '' && matchSpecial === true) {
     //console.log ('speical ad!');
+    //QUEST:这时的c怎么又重新赋值？？还从8位数变成了4位数
     if (adCode === 'ad300x600') {
         c = '0106';
         //c="20210003";
@@ -281,8 +293,11 @@ if (testFullPage === true && adCode === 'fullScreen') {
     c = '20530107';
 }
 
-// MARK:作为后文document.writeln()写入的文档流内容，即每个广告的iframe中嵌入的document都是长这样的。
-var dolphineInlineScript = '<div class="'+adType+'" id="ad-content"><scr'+'ipt type="text/javascript" src="http://dolphin.ftimg.net/s?z=ft&c=' + c + adReachability() + '&t='+Math.round(Math.random() * 1000000)+'" charset="gbk" ></scr'+'ipt></div>';
+
+// MARK:作为后文document.writeln()写入的文档流内容，即每个广告的iframe中嵌入的document的div（其id为"ad-content"）
+
+var dolphineInlineScript = '<div class="'+adType+'" id="ad-content"><scr'+'ipt type="text/javascript" src="http://dolphin.ftimg.net/s?z=ft&c=' + c + adReachability() + '&t='+Math.round(Math.random() * 1000000)+'" charset="gbk" ></scr'+'ipt></div>';//adType,Eg：'halfpage';c,Eg:'20210106';adReachability(),Eg：'&_dc=2&_mm=2&_sz=2&_am=2';
+//MARK：这是得到的这个script的src=`http://dolphin.ftimg.net/s?z=ft&c=20210106&_dc=2&_mm=2&_sz=2&_am=2&t=${一个7位的随机数}`，这其实就是去传漾的系统里面根据src的参数找到相应的代码模板片段（对于每个广告位，都会请求到一段来自传漾的对应广告的script代码片段）。该script片段负责向传漾服务器发送图像ping以统计广告被看到的次数。该片段的样例见'工作业务事项/10.'
 
 if (adCode === 'fullScreen') {
     // MARK: - if a full screen ad is already displayed once, return immediately
@@ -290,7 +305,7 @@ if (adCode === 'fullScreen') {
     var popAdClass1 = popAd1.className;//overlay
     // console.log ('should I request for full page ad code? ');
     if (popAdClass1.indexOf('done') < 0) {
-        //MARK:如果此时popAdClass1不含有class 'done',则展示fullScreen的广告
+        //MARK:如果此时popAdClass1不含有class 'done',则表明原生层面没有展示全屏广告，故此时在web层面展示全屏广告
         // console.log ('full screen ad displayed. ');
         document.writeln(dolphineInlineScript);
     }
@@ -306,6 +321,11 @@ if (adCode === 'fullScreen') {
 
 
 try {
+    //MARK:发送广告ga
+    /* eventCategory: 'Ad Impression'
+     * eventAction: c.substring(0,4)
+     * eventLabel: c.substring(4,8)
+    */ 
     window.parent.ga('send', 'event', 'Ad Impression', c.substring(0,4), c.substring(4,8), {'nonInteraction':1});
 } catch(ignore) {
 
@@ -316,39 +336,46 @@ try {
 var adLinks, i, adHeight=0, gATag, gVideoTag, gImgTag, gDivTag, giFrameTag, gParentA, gParentHTML, gParentHTMLClass, gReferal, gParentDom;
 
 function checkDom(qString) {
+    /** 
+     * @dest:检测本dom中符合某种选择器的元素有多少个
+     * @param qString：Type String，选择器字符串
+     * @return: 本dom符合该选择器字符串的元素个数
+    */
     if (document.querySelectorAll(qString)) {
         return document.querySelectorAll(qString).length;
     } else {
         return 0;
     }
 }
+
 if (document.getElementById("ad-content") && document.getElementById("ad-content").getElementsByTagName("a").length>0) {
+    //MARK:如果当前dom(即某一个iframe下的document)含有id='ad-content'的div,且该id='ad-content'的div下有a元素，则循环遍历这些a元素
+
     for (i=0;i<document.getElementById("ad-content").getElementsByTagName("a").length;i++) {
-        adLinks = document.getElementById("ad-content").getElementsByTagName("a")[i].href || "";
+        adLinks = document.getElementById("ad-content").getElementsByTagName("a")[i].href || "";//获取a的href
         if (adLinks !== '') {
+            //MARK：如果a的href存在，则在其参数前加上键值对isad=1，重新将添加了键值对的href设为本a的href
             adLinks = (adLinks.indexOf("?")>0) ? adLinks.replace(/\?/,'?isad=1&') : adLinks + '?isad=1';
             document.getElementById("ad-content").getElementsByTagName("a")[i].href = adLinks;
         }
     }
 }
-adId = "ad-"+adId;
+adId = "ad-"+adId;//Eg 'ad-fullbody0',adId是从当前dom所插入的iframe的src的参数获取的
 
-//alert (typeof window.videoAd);
 try {
-    gATag = checkDom('#ad-content a');
-    gVideoTag = checkDom('#ad-content video');
-    giFrameTag = checkDom('#ad-content iframe');
-    gImgTag = checkDom('#ad-content img');
-    gDivTag = checkDom('#ad-content div');
+    gATag = checkDom('#ad-content a');//得到ad-content下的a元素个数
+    gVideoTag = checkDom('#ad-content video');//得到ad-content下的video个数
+    giFrameTag = checkDom('#ad-content iframe');//得到ad-content下的iframe个数
+    gImgTag = checkDom('#ad-content img');//得到ad-content下的img个数
+    gDivTag = checkDom('#ad-content div');//得到ad-content下的div个数
 
-    //console.log (adId);
     try {
-        gParentDom = parent.document.getElementById(adId);
-        gParentA = gParentDom.getElementsByTagName("a")[0];
-        gParentDom.setAttribute('data-adid', c);
-        parent.updateViewableAdId(adId, c);
-        parent.updateViewableAdSize()
-        parent.adViewUpdate();
+        gParentDom = parent.document.getElementById(adId);//获取本dom所插入的iframe所插入的广告位div，其id为 （'ad'和之前的adId 拼成的）adId,Eg：'ad-fullbody0'
+        gParentA = gParentDom.getElementsByTagName("a")[0];//获取本dom所插入的iframe所插入的广告位div下的第一个a元素
+        gParentDom.setAttribute('data-adid', c);//为parent中的该广告位div设置属性'data-adid'为c
+        parent.updateViewableAdId(adId, c);//以adId和c更新全局变量gViewableAds,为其每个item增加属性id、adid。函数updateViewableAdId来自于trackadview.js,关于该函数的注释见《2-trackadview.js》
+        parent.updateViewableAdSize();//根据广告位div的offsetTop、offsetHeight更新gViewableAds，为其每个item增加属性top、height。函数updateViewableAdSize来自于trackadview.js，关于该函数的注释见《2-trackadview.js》
+        parent.adViewUpdate();//刷新广告位，函数adViewUpdate来自于trackadview.js，关于该函数的注释见《2-trackadview.js》
     } catch (ignore) {
 
     }

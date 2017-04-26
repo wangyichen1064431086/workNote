@@ -141,10 +141,14 @@ function updateAds() {
 }
 
 
-function createViewableAds() {
-  // initiate the array for all viewable ad units
-  gViewableAds = [];//存储5个广告位中的相关信息，每个广告位的信息为该数组的一项（Type Object)
 
+function createViewableAds() {
+  /** 
+   * @dest:initiate the array for all viewable ad units，初始化最初的存储广告信息的数组gViewableAds
+   * @return: Nothing,但是会影响全局变量gViewableAds
+   * /
+  */
+  //gViewableAds = [];//存储5个广告位中的相关信息，每个广告位的信息为该数组的一项（Type Object)
   // make sure gNowView matches gCurrentScroller
   if (gNowView === 'fullbody') {
     gCurrentScroller = 'homeScroller';//id为gCurrentScroller的部分就是id为gNowView的直接子元素，基本上是整个可滚动区域
@@ -167,6 +171,49 @@ function createViewableAds() {
     if (typeof currentViewableAd.top === 'number' && currentViewableAd.top >= 0) {
       currentViewableAd.id = 'ad-' + gNowView + adCount;//以fullbody的顶部banner为例，为'ad-fullbody-0'
       gViewableAds.push(currentViewableAd);
+      //MARK:这时gViewableAds里面每个元素都为obj,其含有属性top、height、status，形如:
+      /**
+       * {
+       *    top: ,//广告位元素距顶端的距离
+       *    height: ,//广告位元素的高度
+       *    status:'create'//广告位状态
+       * }
+       */
+    }
+  }
+}
+
+function updateViewableAdId(containerId, adId) {
+  /**
+   * @dest:更新全局变量gViewableAds，为其每个item增加属性id、adid
+   * @return:Nothing,但是现在gViewableAds数组的每个item会变成形如
+
+      {
+         top: ,//广告位元素距顶端的距离
+         height: ,//广告位元素的高度
+         status:'create',//广告位状态
+         id:,
+         adid:,
+      }
+    */
+
+  for (var adCount=0; adCount < gViewableAds.length; adCount ++) {
+    if (gViewableAds[adCount].id === containerId) {
+      gViewableAds[adCount].adid = adId;
+      gViewableAds[adCount].status = 'created';
+    }
+  }
+}
+
+function updateViewableAdSize() {
+ /**
+  * @dest:根据广告位div的offsetTop、offsetHeight更新gViewableAds每个item的属性top、height
+  * @return:Nothing, 不过gViewableAds每个item的属性top、height会变
+ */
+  for (var adCount=0; adCount < gViewableAds.length; adCount ++) {
+    if (document.getElementById(gViewableAds[adCount].id)) {
+      gViewableAds[adCount].top = document.getElementById(gViewableAds[adCount].id).offsetTop || '';
+      gViewableAds[adCount].height = document.getElementById(gViewableAds[adCount].id).offsetHeight || 0;
     }
   }
 }
