@@ -381,11 +381,12 @@ try {
     }
 
     if (typeof window.videoAd === 'object') {
-        gVideoTag = 1;
+        gVideoTag = 1;//QUEST:该变量表示有视频广告？
         window.overlayLink = '';
     }
 
     if ((parent.window.useFTScroller===1 && gVideoTag === 0 && giFrameTag === 0 && (gATag===1 || (gATag === 0 && gImgTag === 0 && gDivTag === 0))) || (window.overlayLink !== undefined && window.overlayLink !== '')) {
+        //QUEST:这段代码是处理什么的？猜测是处理webapp端全屏广告？？
         if (typeof window.forceLink === 'string') {
             adLink = window.forceLink;
             if (document.getElementById('ad-content')) {
@@ -460,6 +461,7 @@ adId = 'ad-' + adId;
 try {
 	//console.log (adType);
     if ((adType === 'halfpage' || adType === 'mpu' || adType === 'mpu-phone') && (gImgTag>0||gDivTag>0||giFrameTag>0)) {
+        //QUEST：本段代码是干什么的？
         gAdContent = document.getElementById("ad-content").innerHTML;
         if (/height:600px|x600/i.test(gAdContent)) {
             adHeight = 600;
@@ -482,25 +484,8 @@ try {
             document.getElementById('ad-content').style.height = "600px";
         }
     } else { 
-        //if no ad is delivered, hide the ad position altogether
-        //console.log (adId + ' gDivTag: ' + gDivTag);
 
-        /*
 
-        gParentHTML = parent.document.getElementsByTagName("html")[0];
-        gParentHTMLClass = gParentHTML.className;
-
-        console.log (adType + adId + ': ' + parent.document.getElementById(adId).offsetTop);
-
-        if (gDivTag>0 || gImgTag>0 || gATag>0 || gVideoTag>0 || giFrameTag>0) {
-            parent.document.getElementById(adId).style.display = "block";
-            gParentHTMLClass = gParentHTMLClass.replace(/ no\-banner/g,"");
-        } else {
-            parent.document.getElementById(adId).style.display = "none";
-            gParentHTMLClass = gParentHTMLClass + ((gParentHTMLClass.indexOf("no-banner")<0) ? " no-banner" : "");
-        }
-        gParentHTML.className = gParentHTMLClass;
-        */
     }
 } catch (ignore) {
 }
