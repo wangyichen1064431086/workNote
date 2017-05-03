@@ -3,13 +3,16 @@
 #### 1. Overview
 使用箭头函数的两个好处：
 
-1. 比传统函数的写法更简略
+##### (1) 比传统函数的写法更简略
+```
 		const arr = [1, 2, 3];
 		const squares = arr.map(x => x * x);
 		
 		// Traditional function expression:
 		const squares = arr.map(function (x) { return x * x });
-2. 其内的this是来自其外部环境的，即取消了传统函数屏蔽外部环境的this的作用。
+```
+
+##### 2 其内的this是来自其外部环境的，即取消了传统函数屏蔽外部环境的this的作用。
 
 
 #### 2. 对于好处2的细致说明
