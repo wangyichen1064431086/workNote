@@ -70,5 +70,29 @@ type为function
 	gulp.task('mytask',function(){
 		//Do something
 	}
+
+##### param
+###### name
+
+###### fn 
+**Gulp tasks are asynchronous and Gulp uses async-done to wait for the task's completion. **
+
+Eg:
+
+```
+	gulp.task('clean', function(done) {
+		del(['.build/'], done);
+	});
+```
+
+```
+	gulp.task('del', (done) => {
+		del(['.tmp','dist','deploy']).then( paths => {
+			console.log('Deleted files:\n',paths.join('\n'));
+			done();
+		});
+	});
+```
+
 #### （6）gulp.series(...tasks)
 并行执行任务。
