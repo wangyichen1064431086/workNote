@@ -4,6 +4,9 @@
 
 中文翻译项目<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
 
+
+Awesome Swift
+<https://github.com/matteocrippa/awesome-swift/blob/master/README.md>
 # Lesson1
 
 ## What's in iOS?
