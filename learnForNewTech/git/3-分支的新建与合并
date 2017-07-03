@@ -20,3 +20,11 @@ git checkout master
 git merge newBranchName
 git branch -d newBranchName
 ```
+
+### 5.将master合并到分支上
+假设目前在分支myBranch上：
+
+```
+git commit -m "newly add"
+git merge master
+```
