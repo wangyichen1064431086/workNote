@@ -9,3 +9,4 @@
 ### http://photoswipe.com/
 
 ### http://idangero.us/swiper/#.WTE3SBOGOi5
+用于轮播效果。
