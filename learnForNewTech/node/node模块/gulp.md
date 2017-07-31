@@ -95,4 +95,11 @@ Eg:
 ```
 
 #### （6）gulp.series(...tasks)
-并行执行任务。
+串行行执行任务。
+
+**我的发现**：
+```
+对于gulp.task('alltask',gulp.series(task0,task1,task2...))： 执行gulp alltask并不等于手动依次执行gulp task0、gulp task1...，因为前者是一个node线程(***"线程"表述待确认***)；后者是中段再继续，。
+
+如果在task0设置procss.env的相关值，那么单独再执行task1，则该process.env相关值无效。
+```

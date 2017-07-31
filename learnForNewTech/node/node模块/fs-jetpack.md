@@ -78,3 +78,5 @@ File content in specified format, or undefined if file doesn't exist.
 	}
 		
 异步：返回包含以上obj的resolve的promise
+
+### 4. find([path], searchOptions)
