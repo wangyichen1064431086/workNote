@@ -1,0 +1,19 @@
+Test Bed:
+AppKey:
+rcCfylzCxuMtwpt5VWMRPrGkopPs4H0PvlU4dqlN
+
+Primary Secret:
+ebU2LDatLK56UUECdpm5Hw3jiId0NsZP5EnQGv0Qzk2SutY6B9QTVyq9RHV8M4t4
+
+Secondary Secret:
+KCKPd4jilYotOlBTHGoLVa1iNLzu9SFRuMxnfjo2DX2DrP90a8xQdzbMw6o4P6MN
+
+Prod Bed:
+AppKey:
+vAKjG4el8hL2MW3yD9QpgwcWJsdmEXoxqilLPTpy
+
+Primary Secret:
+bJicIuWGOAYkh6hEcPXeF45KOi7opu7dDAw2SjJWvIf5VuAYk6tWMrLgfmYdhR1o
+
+Secondary Secret:
+cf9yHoi35fVMyPDkp6CyTxLwTQQIGEqwi07nI8kbLmfUmZtbrIK25JMkfPi472MY
