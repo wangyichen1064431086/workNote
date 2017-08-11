@@ -17,3 +17,14 @@ bJicIuWGOAYkh6hEcPXeF45KOi7opu7dDAw2SjJWvIf5VuAYk6tWMrLgfmYdhR1o
 
 Secondary Secret:
 cf9yHoi35fVMyPDkp6CyTxLwTQQIGEqwi07nI8kbLmfUmZtbrIK25JMkfPi472MY
+
+
+Appid 和对应的secret:
+ 
+Test:
+appid: XI36GDstzRkCzD18Fh
+Secret:5c3c48acd5434663897109d18a2f62c5
+ 
+Prod:
+appid: XIeQemRXxREgGsyPki
+Secret:4b3f82a71fb54cbe9e4c8f125998c787
