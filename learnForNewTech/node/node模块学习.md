@@ -1827,26 +1827,7 @@ Init with presets and options:
 	  highlight: function (/*str, lang*/) { return ''; }
 	});
 
-### 71.nunjucks-markdown
-<https://www.npmjs.com/package/markdown-tag>
 
-针对nunjucks的markdown扩展。
-
-#### Usage
-	var nunjucks = require('nunjucks'),
-	    markdown = require('nunjucks-markdown'),
-
-	function md(str, inline) {
-	  return !str ? '' :
-	    (inline ? markdownIt.renderInline(str) : markdownIt.render(str));
-	    //如果str不存在，则返回''；如果str存在，则返回后面的情况。
-	    //对于后面的，如果inline存在，使用grenderInline方法渲染str；如果inline不存在，则使用render方法渲染。
-	}
-	 
-	var env = nunjucks.configure('views');
-	 
-	// The second argument can be any function that renders markdown
-	markdown.register(env, md);
 
 
 ### 72.模块co
