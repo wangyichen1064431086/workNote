@@ -9,3 +9,5 @@ li:before {
   content:'\f007';
 }
 ```
+#### idangero
+<http://idangero.us/swiper/get-started/#.WT9x2W997IU>
