@@ -1,0 +1,25 @@
+.parent {
+  height:300px;
+  width:800px;
+  background-color: blue;
+  display: inline-block;
+  line-height: 100px;
+}
+/*
+.parent::before {
+  height:100%;
+  content:"";
+  display: inline-block;
+  vertical-align: middle;
+}
+*/
+.child1 {
+  background-color: red;
+  display: inline-block;
+  /*vertical-align: middle;*/
+}
+.child2 {
+  background-color: yellow;
+  display: inline-block;
+  /*vertical-align: middle;*/
+}
