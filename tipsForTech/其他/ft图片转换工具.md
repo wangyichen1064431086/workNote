@@ -1,0 +1,1 @@
+<https://www.ft.com/__origami/service/image/v2/>
