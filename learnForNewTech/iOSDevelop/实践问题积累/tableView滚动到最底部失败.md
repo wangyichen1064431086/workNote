@@ -48,4 +48,5 @@ override func viewDidAppear(_ animated: Bool) {
 实践中最后采用了方式1
 
 ## 参考资料
-
+<https://stackoverflow.com/questions/26244293/scrolltorowatindexpath-with-uitableview-does-not-work>
+<https://stackoverflow.com/questions/2770158/how-to-scroll-to-the-bottom-of-a-uitableview-on-the-iphone-before-the-view-appea>
