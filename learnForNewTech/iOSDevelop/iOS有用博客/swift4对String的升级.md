@@ -1,0 +1,1 @@
+<https://useyourloaf.com/blog/updating-strings-for-swift-4/>
