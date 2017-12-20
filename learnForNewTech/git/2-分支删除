@@ -29,3 +29,13 @@ git branch
 ```
 git branch -d wycnote
 ```
+
+如果分支没有完全合并，要强制删除分支：
+```
+git branch -D wycnote
+```
+
+## 2.删除远程分支
+```
+git push origin --delete wycnote
+```
