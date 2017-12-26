@@ -87,6 +87,6 @@ Locate modules using the Node resolution algorithm, for using third party module
 #### bundle.write( options )
 和bundle.generate相似，除了它是写一个文件。返回一个Promise。
 
-- format:string。产生的项目包的格式。可以为amd/cjs/es/life/umd
+- format:string。产生的项目包的格式。可以为amd/cjs/es/iife/umd
 - sourceMap:boolean。是否产生一个sourcemap。
 - dest:要写入的文件。
