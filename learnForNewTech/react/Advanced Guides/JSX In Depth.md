@@ -144,3 +144,121 @@ function Story(props) {
 ```
 
 ### Props in JSX
+There are several different ways to specify props in JSX.
+
+#### JavaScript Expressions as Props
+You can pass any JavaScript expression as a prop, by surrounding it with {}. For example, in this JSX:
+
+可以将任何JavaScript表达式用{}括起来，赋值给prop。Eg:
+
+```
+<MyComponent foo={1+2+3+4} />
+```
+
+For MyComponent, the value of props.foo will be 10 because the expression 1 + 2 + 3 + 4 gets evaluated.
+
+props.foo的值最终为10。
+
+if statements and for loops are not expressions in JavaScript, so they can’t be used in JSX directly. Instead, you can put these in the surrounding code. For example:
+
+在JavaScript中，if说明和for循环不是表达式，所以它们不能直接被用到JSX中。但是，你可以将它们放在JSX的外围代码中。Eg:
+
+```
+function NumberDescriber(props) {
+    let description;
+    if (props.number % 2 ==0) {
+        description = <strong>even</strong>;
+    } else {
+        description = <i>odd</i>;
+    }
+    return <div>{props.number} is an {description} number</div>;
+}
+```
+
+#### String Literals 字符串字面量
+You can pass a string literal as a prop. These two JSX expressions are equivalent:
+
+你以将一个字符串字面量赋值给prop。一下两种JSX表达式是等价的:
+
+```
+<MyComponent message="hello world" />
+<MyComponent message={'hello world'} />
+```
+
+When you pass a string literal, its value is HTML-unescaped. So these two JSX expressions are equivalent:
+
+当你传递一个字符串字面量时，它的值是未转义的HTML。所以以下两种JSX是等价的:
+
+```
+<MyComponent message="&lt;3" />
+<MyComponent message={'<3'} />
+```
+
+This behavior is usually not relevant. It’s only mentioned here for completeness.
+
+这种行为其实并不是重点。这里提一下只是为了我们表述的完整性。
+
+#### Props Default to "True" : Props默认值为true
+If you pass no value for a prop, it defaults to true. These two JSX expressions are equivalent:
+
+如果你的prop没有值，那么它默认是true。以下两个表达式是等价的。
+
+```
+<MyTextBox autocomplete />
+<MyTextBox autocomplete={true} />
+```
+
+In general, we don’t recommend using this because it can be confused with the ES6 object shorthand {foo} which is short for {foo: foo} rather than {foo: true}. This behavior is just there so that it matches the behavior of HTML.
+
+通常，我们不推荐这样写（没有值的prop），因为它会和ES6的对象简写——{foo}是{foo:foo}的简写，而非{foo:true}——混淆。这种行为之所以存在仅仅是为了和HTML的行为一致。
+
+#### Spread Attributes:属性展开
+If you already have props as an object, and you want to pass it in JSX, you can use ... as a “spread” operator to pass the whole props object. These two components are equivalent:
+
+如果你已经有了一个对象形式的props, 而且你想在JSX中使用它，你可以使用...作为一个“展开”操作符来传递整个props对象。以下两种组件是等价的：
+
+```
+function App1() {
+    return <Greeting firstName="Ben" lastName="Hector" />;
+}
+
+function App2() {
+    const props = {firstName: 'Ben', lastName:'Hector'};
+    return <Greeting {...props} />;
+}
+```
+
+You can also pick specific props that your component will consume while passing all other props using the spread operator.
+
+你也可以选择你的组件将使用的特定props，同时使用展开操作符传递其他所有props。
+
+```
+const Button = props => {
+  const { kind, ...other } = props;
+  const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
+  return <button className={className}  {...other} />;
+}
+
+const App = () => {
+  return (
+    <div>
+      <Button kind="primary" onClick={() => console.log("clicked!")}>
+        Hello World!
+      </Button>
+    </div>
+  );
+};
+```
+
+In the example above, the kind prop is safely consumed and is not passed on to the < button> element in the DOM. All other props are passed via the ...other object making this component really flexible. You can see that it passes an onClick and children props.
+
+在上面的例子中，kind prop可以安全地被使用，并且不会被传递给DOM中的< button>元素。 其他所有props都通过...other对象传递，这就使得这个组件非常灵活。 你可以看到它传递了一个onClick prop和children prop。
+
+Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don’t care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.
+
+扩展属性可以是非常有用的，但它们也可以很容易地将非必需的props传递给不关心它们的组件, 或将无效的HTML属性传递给DOM。 我们建议少用这个语法。
+
+### JSX Children
+
+
+
