@@ -107,7 +107,7 @@ We recommend naming components with a capital letter. If you do have a component
 ### Choosing the Type at Runtime:在运行时就选择好Type
 You cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:
 
-您不能使用通用表达式作为React元素类型。 如果您确实想使用通用表达式来不是元素的类型，只需将其先分配给首字母大写的变量即可。 当你想渲染一个基于prop的不同的组件时：
+您不能使用通用表达式作为React元素类型。 如果您确实想使用通用表达式来表达元素的类型，只需将其先分配给首字母大写的变量即可。 当你想渲染一个基于prop的不同的组件时：
 
 ```
 import React from 'react';
@@ -178,7 +178,7 @@ function NumberDescriber(props) {
 #### String Literals 字符串字面量
 You can pass a string literal as a prop. These two JSX expressions are equivalent:
 
-你以将一个字符串字面量赋值给prop。一下两种JSX表达式是等价的:
+你以将一个字符串字面量赋值给prop。以下两种JSX表达式是等价的:
 
 ```
 <MyComponent message="hello world" />
@@ -258,7 +258,245 @@ Spread attributes can be useful but they also make it easy to pass unnecessary p
 
 扩展属性可以是非常有用的，但它们也可以很容易地将非必需的props传递给不关心它们的组件, 或将无效的HTML属性传递给DOM。 我们建议少用这个语法。
 
-### JSX Children
+### Children in JSX
+In JSX expressions that contain both an opening tag and a closing tag, the content between those tags is passed as a special prop: props.children. There are several different ways to pass children:
 
+对于同时包含开始标签和结束标签的JSX表达式，在两个标签之间的内容将会作为一种特殊的prop——props.children来传递。有好几种不同方式来传递children:
 
+#### String Literals
+You can put a string between the opening and closing tags and props.children will just be that string. This is useful for many of the built-in HTML elements. For example:
 
+你可以在开始和结束标签之间写一个字符串,props.children就会是那个字符串。这对于很多内置的HTML元素都很有用。
+
+```
+    <MyComponent>Hello world!</MyComponent>
+```
+
+This is valid JSX, and props.children in MyComponent will simply be the string "Hello world!". HTML is unescaped, so you can generally write JSX just like you would write HTML in this way:
+
+这是有效的JSX，并且MyComponent组件中的props.children就会是字符串"Hello world!"。HTML是非转义的，所以你通常可以像写HTML一样这么来写JSX:
+
+```
+    <div>THis is valid HTML &amp; JSX at the same time.</div>
+```
+
+***NOTE*** &amp;是符号"&"的html名称。
+
+JSX removes whitespace at the beginning and ending of a line. It also removes blank lines. New lines adjacent to tags are removed; new lines that occur in the middle of string literals are condensed into a single space. So these all render to the same thing:
+
+JSX会移除一行中开头和结尾的空白。它也会移除空行。与标签相邻的换行会被删除；字符串中间的换行会被压缩成一个空格。所以这些都会渲染成相同的东西：
+
+```
+<div>Hello World</div>
+
+<div>
+    Hello World
+</div>
+
+<div>
+    Hello
+    World
+</div>
+
+<div>
+
+    Hello World
+</div>
+```
+
+#### JSX Children
+You can provide more JSX elements as the children. This is useful for displaying nested components:
+
+你可以将另外一些JSX元素作为一个JSX元素的children。这对于展示嵌套组件是很有用的：
+
+```
+<MyContainer>
+    <MyFirstComponent />
+    <MySecondComponent />
+</MyContainer>
+```
+
+You can mix together different types of children, so you can use string literals together with JSX children. This is another way in which JSX is like HTML, so that this is both valid JSX and valid HTML:
+
+你可以混合使用不同类型的children，就是你可以同时使用字符串字面量和JSX children。这是JSX和HTML相似的另一方面。所以这既是有效的JSX，又是有效的HTML:
+
+```
+<div>
+  Here is a list:
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+</div>
+```
+
+A React component can also return an array of elements:
+
+一个React组件也可以返回一个由元素组成的数组：
+
+```
+    render() {
+        // No need to wrap list items in an extra element!
+        return [
+            // Don't forget the keys 
+            <li key="A">First item</li>,
+            <li key="B">Second item</li>,
+            <li key="C">Third item</li>
+        ];
+    }
+```
+
+#### JavaScript Expressions as Children
+You can pass any JavaScript expression as children, by enclosing it within {}. For example, these expressions are equivalent:
+
+你可以用{}包裹任何JavaScript表达式，用来作为children。例如，以下两个是等价的:
+
+```
+<MyComponent>foo</MyComponent>
+
+<MyComponent>{'foo'}</MyComponent>
+```
+
+This is often useful for rendering a list of JSX expressions of arbitrary length. For example, this renders an HTML list:
+
+这对于渲染任意长度的JSX表达式列表非常有用。如下，这会渲染出一个HTML list:
+
+```
+function Item(props) {
+    return <li>{props.message}</li>;
+}
+
+function TodoList() {
+    const todos = ['a','b','c'];
+    return (
+        <ul>
+            {todos.map((message) => <Item key={message} message={message} />)}
+        </ul>
+    );
+}
+```
+
+JavaScript expressions can be mixed with other types of children. This is often useful in lieu of string templates:
+
+JavaScript表达式可以和其他类型的children混合起来使用。这在字符串模板的场景中经常很有用：
+
+```
+function Hello(props) {
+    return <div>Hello {props.addressee}!</div>;
+}
+```
+
+#### Functions as Children
+Normally, JavaScript expressions inserted in JSX will evaluate to a string, a React element, or a list of those things. However, props.children works just like any other prop in that it can pass any sort of data, not just the sorts that React knows how to render. For example, if you have a custom component, you could have it take a callback as props.children:
+
+通常地，插入在JSX中的JavaScript表达式最终会得到一个string，一个React元素，或者一系列的这些东西。然而，props.children就像任何其他prop一样，它可以传递任何类型的数据，而不仅仅是React知道如何渲染的那些类型。 例如，如果你有自定义组件，则可以使用props.children作为回调函数：
+
+```
+function Repeat(props) {
+    let items = [];
+    for (let i = 0; i < props.numTimes; i++) {
+        items.push(props.children(i));
+    }
+    return <div>{items}</div>;
+}
+
+function ListOfTenThings() {
+    return (
+        <Repeat numTimes={10}>
+            {(index) => <div key={index}>This is item {index} in the list</div>}
+        </Repeat>
+    )
+}
+```
+
+编译结果HTML：
+```
+<div>
+    <div>This is item 0 in the list</div>
+    <div>This is item 1 in the list</div>
+    <div>This is item 2 in the list</div>
+    <div>This is item 3 in the list</div>
+    <div>This is item 4 in the list</div>
+    <div>This is item 5 in the list</div>
+    <div>This is item 6 in the list</div>
+    <div>This is item 7 in the list</div>
+    <div>This is item 8 in the list</div>
+    <div>This is item 9 in the list</div>
+</div>
+```
+
+上例的props.children其实就是一个函数:
+```
+    props.children = function(index) {
+        return <div key={index}>This is item {index} in the list</div>
+    }
+
+```
+
+Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
+
+传递给自定义组件的children可以是任何东西，只要该组件可以将它们转换为React理解的东西，以进行渲染。 这种用法并不常见，但是如果你想要扩展JSX的功能，它就可以派上用场。
+
+#### Booleans, Null, and Undefined Are Ignored
+
+false, null, undefined, and true are valid children. They simply don’t render. These JSX expressions will all render to the same thing:
+
+false,null,undefined,true都是有效的children。它们就是不用渲染而已。这些JSX表达式将渲染成相同的东西：
+
+```
+    <div />
+
+    <div></div>
+
+    <div>{false}</div>
+
+    <div>{null}</div>
+
+    <div>{undefined}</div>
+
+    <div>{true}</div>
+```
+
+This can be useful to conditionally render React elements. This JSX only renders a <Header /> if showHeader is true:
+
+在有条件地渲染React元素时，这些会是很有用的。该JSX只有在showHeader为true时才会渲染<Header />：
+
+```
+<div>
+    {showHeader && <Header />}
+    <Content />
+</div>
+```
+
+One caveat is that some “falsy” values, such as the 0 number, are still rendered by React. For example, this code will not behave as you might expect because 0 will be printed when props.messages is an empty array:
+
+一个需要注意的东西是：一些"falsy"值，例如number类型的0,仍然会被React渲染。例如，这段代码的行为可能和你预料的不一样，因为当props.messages是一个空数组时，它会得到0:
+
+```
+<div>
+    {props.messages.length && 
+        <MessageList messages={props.messages} />
+    }
+</div>
+```
+
+To fix this, make sure that the expression before && is always boolean:
+
+为了修正它，要确保&&前面的表达式要总是得到一个boolean值：
+
+```
+<div>
+    {props.messages.length > 0 &&
+        <MessageList messages={props.messages} />
+    }
+```
+
+Conversely, if you want a value like false, true, null, or undefined to appear in the output, you have to convert it to a string first:
+
+相反，如果你想输出false, true, null, undefined这样的值，你就需要首先将它转换为一个string。
+
+```
+<div>
+    My JavaScript variable is {String(myVariable)}.
+</div>
+```
