@@ -4,8 +4,9 @@
 
 新一代ES6的模块打包机
 
-rollup的JavaScript API<https://github.com/rollup/rollup/wiki/JavaScript-API>
+rollup的JavaScript API：<https://rollupjs.org/#javascript-api>
 
+rollup的gulp相关用法:<https://rollupjs.org/#gulp>
 Rollup exports an object with a single method, rollup:
 
 ### 用法eg
