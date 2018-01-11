@@ -17,3 +17,12 @@ mdn:<https://developer.mozilla.org/zh-CN/docs/Web/Events/load>
 The load event is fired when a resource and its dependent resources have finished loading.
 当一个资源及其依赖资源已完成加载时，将触发load事件。
 
+## 异步脚本和延迟脚本与load和DOMContentLoaded的关系
+### async
+一定会在load事件之前执行，可能会在DOMContentLoaded之前或之后执行
+
+### defer
+按照h5规范，两个defer脚本会安装它们出现的先后顺序执行，两个脚本会在DOMContentLoaded之前执行。
+
+但事实上，defer脚本不一定会按顺序执行，也不一定会在DOMContentLoaded之前执行。**疑问：在load之前还是之后执行呢？**
+
