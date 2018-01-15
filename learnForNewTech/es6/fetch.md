@@ -1,5 +1,5 @@
 ### 1.fetch
-<https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
+参考：<https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
 
 GlobalFetch的fetch()方法用于发起获取资源的请求。
 
