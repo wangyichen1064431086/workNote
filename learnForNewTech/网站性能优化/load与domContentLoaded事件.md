@@ -1,7 +1,9 @@
 ## 相关博客
 Using setTimeout to speed up window.onload: <https://mathiasbynens.be/notes/settimeout-onload>
 
+<http://www.cnblogs.com/coco1s/p/4010310.html>
 
+你不知道的DOMContentLoaded:<https://zhuanlan.zhihu.com/p/25876048>
 ## 认识Load & DOMContenLoaded 
 ### DOMContentLoaded
 mdn:<https://developer.mozilla.org/zh-CN/docs/Web/Events/DOMContentLoaded>
