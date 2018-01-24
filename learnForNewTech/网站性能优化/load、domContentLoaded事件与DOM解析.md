@@ -34,11 +34,12 @@ The load event is fired when a resource and its dependent resources have finishe
 
 ### 1.在既没有CSS也没有JS的情况下，HTML文档的解析过程为：
 <img src="img/DOM parse 1.jpg">
+DOMContentLoaded事件的触发时机为:HTML解析为DOM之后。
 
 ### 2.有CSS无JS的情况下，HTML文档解析过程为：
 
 <img src="img/DOM parse 2.jpg">
-这里与1.不同的地方在于，渲染树的生成是基于DOM和CSSOM的。但是触发DOMContentLoaded的时间是在HTML解析为DOM后，无论此时CSS解析为CSSOM的过程是否完成。
+这里与1.不同的地方在于，渲染树的生成是基于DOM和CSSOM的。但是触发DOMContentLoaded的时间依然是在HTML解析为DOM后，无论此时CSS解析为CSSOM的过程是否完成。
 
 ### 3.当有JS时
 
