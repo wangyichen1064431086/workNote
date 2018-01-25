@@ -41,7 +41,15 @@ DOMContentLoaded事件的触发时机为:HTML解析为DOM之后。
 <img src="img/DOM parse 2.jpg">
 这里与1.不同的地方在于，渲染树的生成是基于DOM和CSSOM的。但是触发DOMContentLoaded的时间依然是在HTML解析为DOM后，无论此时CSS解析为CSSOM的过程是否完成。
 
-### 3.当有JS时
+### 3.当有JS时，HTML文档解析过程为：
+<img src="img/DOM parse 3.jpg">
+
+
+###  有一个问题：首屏时间？
+“计算这个网页从空白到出现内容所花费的时间”。那怎么计算这段时间？HTML5 规范已经帮我们完成了相应的工作，就是当一个 HTML 文档被加载和解析完成后，DOMContentLoaded 事件便会被触发。
+
+那岂不是js放在前面和后面都是一样的。。。。***待查资料***
+
 
 ## 异步脚本和延迟脚本与load和DOMContentLoaded的关系
 ### async
