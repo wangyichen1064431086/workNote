@@ -13,3 +13,9 @@
 <https://www.google.com/dfp/80682004#home>
 
 
+### 新阶段学习资料
+移动端banner需要使用自定义广告，参考资源为:https://support.google.com/dfp_premium/answer/2376981
+
+db的API：https://developers.google.com/doubleclick-gpt/reference
+
+
