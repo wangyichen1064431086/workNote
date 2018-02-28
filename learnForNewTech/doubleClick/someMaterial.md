@@ -16,6 +16,8 @@
 ### 新阶段学习资料
 移动端banner需要使用自定义广告，参考资源为:https://support.google.com/dfp_premium/answer/2376981
 
+<https://support.google.com/dfp_premium/topic/7506191?hl=zh-Hans&ref_topic=7506190>
+
 db的API：https://developers.google.com/doubleclick-gpt/reference
 
 
