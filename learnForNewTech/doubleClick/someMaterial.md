@@ -20,4 +20,7 @@
 
 db的API：https://developers.google.com/doubleclick-gpt/reference
 
+明天移动端待看资料:
+<https://publisheruniversity.withgoogle.com/dfp/en/training_content/video/videolibrary/6194247648673792.html?collection=DFPVideo>
+
 
