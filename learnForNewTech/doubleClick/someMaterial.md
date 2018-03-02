@@ -23,4 +23,9 @@ db的API：https://developers.google.com/doubleclick-gpt/reference
 明天移动端待看资料:
 <https://publisheruniversity.withgoogle.com/dfp/en/training_content/video/videolibrary/6194247648673792.html?collection=DFPVideo>
 
+<https://support.google.com/dfp_premium/answer/3423562?hl=zh-Hans>
+
+
+移动端最新进展材料:
+<https://support.google.com/dfp_premium/answer/6238693?hl=zh-Hans>
 
