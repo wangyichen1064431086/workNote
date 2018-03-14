@@ -9,7 +9,7 @@ WAI-ARIA指无障碍网页应用。主要针对的是视觉缺陷，失聪，行
 
 
 ### WAI-ARIA的介绍文档
-<https://www.w3.org/TR/wai-aria/roles#usage>
+<https://www.w3.org/TR/2017/REC-wai-aria-1.1-20171214/>
 
 ### Roles类别文档
 <https://www.w3.org/TR/wai-aria/roles#roles_categorization>
