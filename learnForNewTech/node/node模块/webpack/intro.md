@@ -1,7 +1,7 @@
 ### 18. webpack模块
 <https://www.npmjs.com/package/webpack>
 
-详细文档见<https://webpack.github.io/docs/>
+详细文档见<https://webpack.js.org/>
 
 官网<https://webpack.github.io>
 #### 作用

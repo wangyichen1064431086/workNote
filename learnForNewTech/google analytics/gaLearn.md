@@ -15,6 +15,7 @@ Set up Analytics：<https://support.google.com/analytics#topic=3544906>
 
 3. googledeveloper document
 api的相关文档在<https://developers.google.com/analytics/devguides/reporting/core/v4/>
+<https://developers.google.com/analytics/devguides/reporting/core/v4/rest/v4/reports/batchGet>
 
 底层地址发送ga的相关文档：
 <https://developers.google.com/analytics/devguides/collection/protocol/v1/>
