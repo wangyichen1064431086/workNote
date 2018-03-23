@@ -1,0 +1,11 @@
+```
+<%foreach from=$allvideos key=mykey item=vc%>
+	<%* <!--高端视点补量的临时办法:start-->*%>
+	<%if $mykey == 0 && $vc.id != '2646' %>
+		<%assign var="vc" value = $firstvideo%>
+	<%/elseif $mykey == 1 && $vc.id == '2646' %>
+		<%assign var="vc" value = $allvideos[0] %>
+	<%/if%>
+	<%* <!--高端视点补量的临时办法:end-->*%>
+<%/foreach%>
+```
