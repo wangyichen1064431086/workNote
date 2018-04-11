@@ -23,6 +23,19 @@ git push
 git push origin v1.3.4
 ```
 
+如果想要一次同时推送branch和tab:(***Not working, need to rethink***)
+```
+git push --follow-tags
+```
+
+参见<https://www.git-scm.com/docs/git-push>
+
+<https://stackoverflow.com/questions/17219102/how-to-make-git-push-include-tags-within-a-branch/17219399#17219399>
+
+The new "--follow-tags" option tells "git push" to push relevant annotated tags when pushing branches out.
+This won't push all the tags, but only the ones accessible from the branch(es) HEAD(s) you are pushing.
+
+
 4. npm发布
 如果是该包第一次发布：
 ```

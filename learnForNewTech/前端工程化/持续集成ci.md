@@ -10,6 +10,7 @@
 ### 网站
 <https://travis-ci.com/profile/wangyichen1064431086>
 
+我的profile:<https://travis-ci.org/>
 ### 参考资料
 <http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html>
 
