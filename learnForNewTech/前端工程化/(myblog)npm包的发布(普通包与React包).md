@@ -20,7 +20,7 @@ git tag -a v1.3.4 -m 'my version 1.3.4'
 最好是保持npm的版本和git release的版本一致，所以有必要先将git tag发布出来:
 ```
 git push
-git push origin v1.3.4
+git push origin v1.3.4 //此时自动执行ci测试
 ```
 
 如果想要一次同时推送branch和tab:(***Not working, need to rethink***)
