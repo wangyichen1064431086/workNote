@@ -1,4 +1,4 @@
-中文文档：<http://koa.rednode.cn/>
+中文文档：<https://koa.bootcss.com/>
 
 英文文档：<http://koajs.com/>
 
