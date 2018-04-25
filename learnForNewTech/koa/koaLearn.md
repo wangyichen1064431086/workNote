@@ -2,6 +2,8 @@
 
 英文文档：<http://koajs.com/>
 
+node中文文档:
+<http://nodejs.cn/api/>
 
 ## 一、 koa API
 ### 1  Setting
