@@ -8,3 +8,9 @@ https://gitlab.com/ftchinese/node-deployer 这个仓库部署node程序的工具
 https://gitlab.com/ftchinese/ansible 这是用ansible自动化服务器部署的工具
 倪卫国:
 https://gitlab.com/ftchinese/sql-schema 这是MySQL schema的仓库，以后我们建立的所有sql数据库方案都尽量写到这里，留下注释>
+
+## FTC内部使用的API
+http://10.148.126.11:8100/
+
+### FTC基本的统计信息
+<http://10.148.126.11:8100/ftc-user/stats/daily-new>
