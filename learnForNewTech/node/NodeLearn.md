@@ -1,6 +1,11 @@
+
 # 资源
 <https://nodejs.org/dist/latest-v7.x/docs/doc/api/>
+### 中文网站
+<http://nodejs.cn/>
 
+### 英文网站
+<https://nodejs.org/en/>
 
 # 理论学习
 参考《深入浅出nodeJS》
