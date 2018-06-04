@@ -1,9 +1,12 @@
+# koa-bodyparser
+
 <https://github.com/koajs/bodyparser>
 
 A body parser for koa, base on co-body. support json, form and text type body.
 
 ## Usage
-```
+
+```js
 var Koa = require('koa');
 var bodyParser = require('koa-bodyparser');
 
@@ -16,5 +19,5 @@ app.use(async ctx => {
   ctx.body = ctx.request.body;
 });
 ```
+
 > MyNote:正常来说，ctx.body是等同于response.body的，这里有了bodyparser，才能得到ctx.request.body
- 
