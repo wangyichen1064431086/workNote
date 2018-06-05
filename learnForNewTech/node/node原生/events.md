@@ -1,6 +1,10 @@
-<https://nodejs.org/dist/latest-v9.x/docs/api/events.html>
+# Events
 
-```
+ <https://nodejs.org/dist/latest-v9.x/docs/api/events.html>
+
+中文文档: <http://nodejs.cn/api/events.html>
+
+```js
 const EventEmitter = require('events');
 
 class MyEmitter extends EventEmitter {}
