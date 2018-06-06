@@ -74,3 +74,7 @@ Returns the resolved value of the promise, or the value itself if it's not a pro
 - 如果await的这个promise无resolve的值，那么可以直接写 await xxxx(xx)
 - 它和co yield组合的作用一模一样，co yield就是为了模仿它
 - 在逻辑比较简单的时候，可以直接用promise；只有当promise的链式操作不连续地使用resolve的结果时，才有必要用async/await,比如第一步promise产生的resolve的值只能在下一个then中使用，那么如果再第三个then中使用的话，就无法直接采用promise的办法了。
+
+### 精选博客
+
+<https://jakearchibald.com/2017/await-vs-return-vs-return-await/>
