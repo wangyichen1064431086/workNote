@@ -25,6 +25,10 @@ Google API Client Libraries：
 
 Google identify platform:
 <https://developers.google.com/identity/>
+
+4. 客户端应用及凭据创建 **重要**
+
+<https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/web-js>
 # Part1 Set up Analytics （from 帮助中心）
 
 ## 一、[Get started with Analytics](https://support.google.com/analytics/answer/1008015?hl=en&ref_topic=3544906)
