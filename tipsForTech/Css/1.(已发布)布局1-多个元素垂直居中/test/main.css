@@ -1,25 +1,23 @@
+body{
+  margin: 0;
+}
 .parent {
   height:300px;
-  width:800px;
   background-color: blue;
-  display: inline-block;
-  line-height: 100px;
 }
-/*
 .parent::before {
-  height:100%;
-  content:"";
   display: inline-block;
+  height: 100%;
+  content: '';
   vertical-align: middle;
 }
-*/
 .child1 {
   background-color: red;
   display: inline-block;
-  /*vertical-align: middle;*/
+  vertical-align: top;
 }
 .child2 {
   background-color: yellow;
   display: inline-block;
-  /*vertical-align: middle;*/
+  vertical-align: middle;
 }
