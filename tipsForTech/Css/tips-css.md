@@ -79,7 +79,7 @@ no-content|如果内容不适合内容框，则隐藏整个内容。
 
 ##### (3)使用最新css属性：
 
-***待问卫国哥***
+calc
 
 更多参考<http://blog.csdn.net/hbiao68/article/details/52683134>
 
