@@ -12,10 +12,10 @@ https://gitlab.com/ftchinese/sql-schema 这是MySQL schema的仓库，以后我�
 https://gitlab.com/ftchinese/next-api/blob/master/models/article.go 这是外部使用的api，用go写，写cms-api可参考该库中的sql语句部分。
 
 ### FTC内部使用的API
-http://10.148.126.11:8100/
+http://10.148.126.11:8000/
 
 ### FTC基本的统计信息
-<http://10.148.126.11:8100/ftc-user/stats/daily-new>
+<http://10.148.126.11:8000/ftc-user/stats/daily-new>
 
 ### api实用范例
 backyard-user使用了cms-api写的api。
