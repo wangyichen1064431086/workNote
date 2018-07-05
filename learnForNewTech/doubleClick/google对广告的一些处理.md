@@ -1,0 +1,1 @@
+<https://privacy.google.com/intl/zh-CN/how-ads-work.html?utm_source=google&utm_medium=ad-settings&utm_campaign=inbound-site-link&modal_active=how-ads-work-action-overlay&article_id=c4-a-control-ads-1>
