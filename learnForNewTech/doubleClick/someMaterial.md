@@ -29,3 +29,4 @@ db的API：https://developers.google.com/doubleclick-gpt/reference
 移动端最新进展材料:
 <https://support.google.com/dfp_premium/answer/6238693?hl=zh-Hans>
 
+300x250, 300x600, 400x300, 414x104, 414x736, 969x90, 1200x120
