@@ -53,7 +53,7 @@ npm unlink
  npm version major/minor/patch
 ```
 
-package.json会改变version字段值，然后也会自动加一个git的tag。假设version 字段自动变为1.3.4。
+package.json会改变version字段值，然后也会自动加一个git的tag,同时也会增加一个commit(加上步骤1的commit，不出意外的话此时本地有2个commits等待push)。假设version 字段自动变为1.3.4。
 
 另外，此处git如果想手动打标签可以这样(当只想发布git release却不想更新npm的时候可以这样)
 
@@ -70,10 +70,10 @@ git push
 git push origin v1.3.4 //此时自动执行ci测试
 ```
 
-如果想要一次同时推送branch和tab:(***Not working, need to rethink***)
+如果想要一次同时推送branch和tag:
 
 ```cmd
-git push --follow-tags
+ git push origin master --tags
 ```
 
 参见<https://www.git-scm.com/docs/git-push>
