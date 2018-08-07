@@ -6,7 +6,11 @@ class|className
 tabindex|tabIndex
 for  |htmlFor
 
-## 2. button的disable
+## 2. 属性值区分
+- HTML的数组值只能是字符串
+- JSX属性值可以是任意类型（用{}包裹起来即可）
+
+## 3. button的disable
 
 <https://stackoverflow.com/questions/33673520/react-setting-the-disabled-attribute-based-on-a-state>
 
@@ -38,8 +42,8 @@ for  |htmlFor
 <button disabled>Submit</button>
 ```
 
-## 3.事件区分
-### (1)React绑定事件的语法与DOM0级事件绑定程序的区别
+## 4.事件区分
+### (1)React绑定事件与DOM0级事件绑定程序的语法区别
 - React events使用峰驼式命名，而非小写
 - 在JSX中你传递一个function作为event handler,而非一个字符串
 
@@ -56,8 +60,17 @@ Eg, React:
   Activate Lasers
 </button>
 ```
+### (2)React绑定事件与DOM0级事件绑定程序的机制区别
 
-### (2)事件中阻止元素默认行为的方式
+React不会像DOM0级事件处理那样将事件监听器直接绑定到HTML元素上。React仅仅是借鉴了这种写法而已。其实，在React底层，对合成事件做了 **事件委派**。
+
+#### React事件委派：
+
+React并不会把事件处理函数直接绑定到真实的节点上，而是把所有事件绑定到结构的最外层，使用一个统一的监听器。该监听器维持了一个映射来保存所有组件内部的事件监听函数。
+
+这样简化了事件处理和回收机制，很大地提高了效率。
+
+### (3)事件中阻止元素默认行为的方式
 在react中你不能通过return false来阻止（HTML元素的）默认行为。你必须显式调用preventDefault。
 
 Eg, the HTML:
@@ -84,7 +97,7 @@ function ActionLink() {
 }
 ```
 
-### 4. 表单元素的一些区别
+### 5. 表单元素的一些区别
 
 #### (1)textarea元素定义text的方式
 在HTML中，textarea元素通过children来定义它的文字:
