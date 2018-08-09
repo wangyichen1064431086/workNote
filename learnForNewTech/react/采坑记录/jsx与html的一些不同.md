@@ -6,6 +6,21 @@ class|className
 tabindex|tabIndex
 for  |htmlFor
 
+## 2. style设置方式区分
+jsx给组件设置style prop时，style prop的值必须是一个对象：
+
+```jsx
+const component = <Component style={{
+  color: 'white',
+  backgroundImage: `url(${imgUrl})`
+}} />
+```
+
+而HTML中元素的style值是一个;分隔的字符串:
+
+```html
+<div style="color: white; backgroundImage: url(xxx.jpg)">
+```
 ## 2. 属性值区分
 - HTML的数组值只能是字符串
 - JSX属性值可以是任意类型（用{}包裹起来即可）
