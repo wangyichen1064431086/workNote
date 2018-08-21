@@ -34,7 +34,7 @@ asyncFunc()
 then() 总是返回一个Promise,这使得你可以链式调用：
 
 ```js
-asyncFunc1()//----设这是一个得到一个promise P，它会resolve出来result1
+asyncFunc1()//----设该函数会得到一个promise P，它会resolve出来result1
 .then(result1 => {
 	// Use result1
 	return asyncFunction2(); // 得到一个promise A, 它会resolve出来result2
@@ -73,3 +73,7 @@ asyncFunc2(),
 // Receives first rejection among the Promises
 });
 ```
+
+## 待补充
+<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise>
+<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises>
