@@ -27,6 +27,7 @@ JavaScript主线程在遇到代码setTimeout(cb, n)时，要做的事情为：**
 
 假设JavaScript主线程会先后遇到两句setTimeout代码，分别记为代码片setTimeout1和setTimeout2,其回调函数分别为cb1和cb2，延迟时间分别为delay1和delay2。则可以得到如所示的JavaScript任务执行情况图：
 
+> **注意**:HTML5规定setTimeout()的最短时间间隔是**4ms**
 ### 情况1：两个异步任务都在同步任务结束一段时间后才加入异步队列，且后一个异步任务加入时前一个异步任务已执行结束
 
 <img src="img/jsMechanism&setTimeout1.png" alt="jsMechanism&setTimeout1.png">
