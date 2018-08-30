@@ -87,6 +87,7 @@ console.log(promise1);//Promise {<resolved>: "foo"}
 
 Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是返回一个能代表未来出现的结果的promise对象。
 
+### Promise对象的状态
 一个 Promise有以下几种状态:
 
 - pending: 初始状态，既不是成功，也不是失败状态。
@@ -94,6 +95,12 @@ Promise 对象是一个代理对象（代理一个值），被代理的值在Pro
 - rejected: 意味着操作失败。
 
 > 注意: 如果一个promise对象处在fulfilled或rejected状态而不是pending状态，那么它也可以被称为settled状态。你可能也会听到一个术语resolved ，它表示promise对象处于fulfilled状态。
+
+返回pending状态的promise：
+```js
+new Promise(()=>{}) //Promise {<pending>}
+```
+当新对象保持“pending”状态时，原Promise链将会中止执行。
 
 
 ### 语法
