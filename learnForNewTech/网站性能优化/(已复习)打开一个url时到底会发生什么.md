@@ -44,7 +44,7 @@ The first step in the navigation is to figure out the IP address for the visited
  #### （5）Recursive search:递归搜索
  Your ISP’s DNS server begins a recursive search, from the root nameserver, through the .com top-level nameserver, to Facebook’s nameserver. Normally, the DNS server will have names of the .com nameservers in cache, and so a hit to the root nameserver will not be necessary.
 
-你的ISP的DNS服务器开始进行递归搜索，从根域名服务器开始，经过.com顶级域名服务器，到Facebooke的域名服务器。通常，DNS服务器的缓存中含有.com的域名服务器的名称，所以命名根域名服务器不是必需的。
+你的ISP的DNS服务器开始进行递归搜索，从根域名服务器开始，经过.com顶级域名服务器，到Facebook的域名服务器。通常，DNS服务器的缓存中含有.com的域名服务器的名称，所以命名根域名服务器不是必需的。
 
 Here is a diagram of what a recursive DNS search looks like:
 
@@ -97,7 +97,7 @@ Host: facebook.com
 Cookie: datr=1265876274-[...]; locale=en_US; lsd=WW[...]; c_user=2101[...]
 ```
 
-The GET request names the URL to fetch: “http://facebook.com/”. The browser identifies itself (User-Agent header), and states what types of responses it will accept (Accept and Accept-Encoding headers). The Connection header asks the server to keep the TCP connection open for further requests.
+The GET request names the URL to fetch: “http://facebook.com”. The browser identifies itself (User-Agent header), and states what types of responses it will accept (Accept and Accept-Encoding headers). The Connection header asks the server to keep the TCP connection open for further requests.
 
 以GET请求来命令这个URL获取“http://facebook.com/”。浏览器标识自己（User-Agent头），并指出它将接受什么类型的响应（Accept和Accept-Encoding头）。Connection头告诉服务器保持TCP连接打开，以进行进一步的请求。
 
@@ -107,7 +107,7 @@ The request also contains the cookies that the browser has for this domain. As y
 
 Some tips:
 
-***Tip1:***There is a variety of tools that let you view the raw HTTP requests and corresponding responses. My favorite tool for viewing the raw HTTP traffic is fiddler, but there are many other tools (e.g., FireBug) These tools are a great help when optimizing a site.
+***Tip1:*** There is a variety of tools that let you view the raw HTTP requests and corresponding responses. My favorite tool for viewing the raw HTTP traffic is fiddler, but there are many other tools (e.g., FireBug) These tools are a great help when optimizing a site.
 
 ***Tip1:***有各种工具可以让你查看原始的HTTP请求和相应的响应。我最喜欢查看原始HTTP流量的工具是fiddler，但还有很多其他工具（例如FireBug）。这些工具在优化网站时非常有帮助。
 
@@ -117,7 +117,7 @@ Some tips:
 
 ***Tip3：***The trailing slash in the URL “http://facebook.com/” is important. In this case, the browser can safely add the slash. For URLs of the form http://example.com/folderOrFile, the browser cannot automatically add a slash, because it is not clear whether folderOrFile is a folder or a file. In such cases, the browser will visit the URL without the slash, and the server will respond with a redirect, resulting in an unnecessary roundtrip.
 
-URL“http://facebook.com/”中的斜杠很重要。在这种情况下，浏览器可以安全地添加斜杠。对于http://example.com/folderOrFile形式的URL，浏览器不能自动添加斜杠，因为不清楚folderOrFile是文件夹还是文件。在这种情况下，浏览器将访问URL而不使用斜杠，服务器将响应重定向，这会导致不必要的往返。
+URLhttp://facebook.com/ 中的斜杠很重要。在这种情况下，浏览器可以安全地添加斜杠。对于http://example.com/folderOrFile 形式的URL，浏览器不能自动添加斜杠，因为不清楚folderOrFile是文件夹还是文件。在这种情况下，浏览器将访问URL而不使用斜杠，服务器将响应重定向，这会导致不必要的往返。
 
 
 ### 4. The facebook server responds with a permanent redirect:服务器响应一个永久重定向
@@ -142,7 +142,7 @@ Content-Length: 0
 The server responded with a 301 Moved Permanently response to tell the browser to go to “http://www.facebook.com/” instead of “http://facebook.com/”.
 
 
-服务器以301 永久重定向响应，告诉浏览器去访问“http://www.facebook.com/”而不是“http://facebook.com/”。
+服务器以301 永久重定向响应，告诉浏览器去访问http://www.facebook.com/ 而不是http://facebook.com/ 。
 
 ***Tips***: 
 
@@ -152,7 +152,7 @@ The server responded with a 301 Moved Permanently response to tell the browser t
 
 > One reason has to do with search engine rankings. See, if there are two URLs for the same page, say http://www.igoro.com/ and http://igoro.com/, search engine may consider them to be two different sites, each with fewer incoming links and thus a lower ranking. Search engines understand permanent redirects (301), and will combine the incoming links from both sources into a single ranking.
 
-> 其中一个原因与搜索引擎排名有关。看，如果同一页面有两个URL，比如http://www.igoro.com/和http://igoro.com/，搜索引擎可能会认为它们是两个不同的站点，这样每个站点的入链就会更少，从而导致排名更低。搜索引擎理解永久重定向（301），并将来自两个来源的传入链接合并为一个排名。
+> 其中一个原因与搜索引擎排名有关。看，如果同一页面有两个URL，比如http://www.igoro.com/ 和http://igoro.com/ ，搜索引擎可能会认为它们是两个不同的站点，这样每个站点的入链就会更少，从而导致排名更低。搜索引擎理解永久重定向（301），并将来自两个来源的传入链接合并为一个排名。
 
 
 > Also, multiple URLs for the same content are not cache-friendly. When a piece of content has multiple names, it will potentially appear multiple times in caches.
@@ -289,7 +289,7 @@ However, static files – unlike dynamic pages – allow the browser to cache th
 
 > Can you guess what “fbcdn.net” in the URLs stands for? A safe bet is that it means “Facebook content delivery network”. Facebook uses a content delivery network (CDN) to distribute static content – images, style sheets, and JavaScript files. So, the files will be copied to many machines across the globe.
 
-> 你可以猜到URL中的“fbcdn.net”代表什么吗？我打赌它意思是“Facebook内容交付网络”。 Facebook使用***内容分发网络（CDN）**分发静态内容 —— 图像，style sheets和JavaScript文件。所以，这些文件将被复制到全球的许多机器上。
+> 你可以猜到URL中的“fbcdn.net”代表什么吗？我打赌它意思是“Facebook内容交付网络”。 Facebook使用***内容分发网络（CDN）** 分发静态内容 —— 图像，style sheets和JavaScript文件。所以，这些文件将被复制到全球的许多机器上。
 
 > Static content often represents the bulk of the bandwidth of a site, and can be easily replicated across a CDN. Often, sites will use a third-party CDN provider, instead of operating a CND themselves. For example, Facebook’s static files are hosted by Akamai, the largest CDN provider.
 
@@ -299,4 +299,3 @@ However, static files – unlike dynamic pages – allow the browser to cache th
 
 > 作为演示，当您尝试ping static.ak.fbcdn.net时，您将收到来自akamai.net服务器的响应。另外，有趣的是，如果你多次ping这个URL，可能会得到来自不同服务器的响应，这说明了在后台发生的负载平衡。
 
-***待研究：CDN内容分发网络***

@@ -36,7 +36,7 @@ The load event is fired when a resource and its dependent resources have finishe
 
 ### 1.在既没有CSS也没有JS的情况下，HTML文档的解析过程为：
 <img src="img/DOM parse 1.jpg">
-DOMContentLoaded事件的触发时机为:HTML解析为DOM之后。
+DOMContentLoaded事件的触发时机为:HTML解析为DOM树之后。
 
 ### 2.有CSS无JS的情况下，HTML文档解析过程为：
 
@@ -46,13 +46,16 @@ DOMContentLoaded事件的触发时机为:HTML解析为DOM之后。
 ### 3.当有JS时，HTML文档解析过程为：
 <img src="img/DOM parse 3.jpg">
 
+> 注意：DOMContentLoaded 事件必须等待其所属script之前的样式表加载解析完成才会触发。
+
+> 注意: 同步 JavaScript 会暂停 DOM 的解析。所以只有同步JavaScript执行完之后才会继续解析DOM。
 
 ###  有一个问题：关于首屏时间？
 “计算这个网页从空白到出现内容所花费的时间”。那怎么计算这段时间？这段时间其实就是HTML 文档加载和解析的时间。也就是DOMContentLoaded 事件触发之前所经历的时间。
 
 ***所以，对于首屏时间而言，js放在HTML文档的开头和结尾处效果是一样的***。而js放在结尾的目的并不是为了减少首屏时间，而是由于js经常需要操纵DOM，放在后面才更能保证找到DOM节点。 
 
-***而要想首屏渲染的快，就不应该在首屏加载js文件***。
+***而要想首屏渲染的快，就不应该在首屏加载js文件***。可以将js异步化。
 
 
 ## 三、异步脚本、延迟脚本与DOMContentLoaded的关系
@@ -68,7 +71,7 @@ DOMContentLoaded事件的触发时机为:HTML解析为DOM之后。
 
 为什么async脚本可能会在DOMContentLoaded之前或之后执行呢？或者说，为什么DOMContentLoaded事件的触发既可能在async脚本执行前、又可能在async脚本执行后呢？ 这是因为，async 标签的脚本加载完毕的时间有两种情况：
 
-情况1： HTML 还没有被解析完的时候，async脚本已经加载完了，那么 HTML 停止解析，去执行脚本，脚本执行完毕后触发DOMContentLoaded事件。如下图所示：
+情况1： HTML 还没有被解析完的时候，async脚本已经加载完了，那么 HTML 停止解析，去执行脚本，脚本执行完毕后继续解析HTML, HTML解析完触发DOMContentLoaded事件。此时DOMContentLoaded事件在async脚本执行之后触发。如下图所示：
 
 <img src="img/async js1.png">
 

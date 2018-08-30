@@ -15,6 +15,21 @@ JavaScript在浏览器中是**单线程**运行的。所谓**单线程**，就�
 
 那么对于这个需要执行的任务而言，主线程什么时候才能称得上是有空了呢？第一，主线程已经执行完了同步任务；第二，主线程已经把异步队列中排在该任务之前的任务都执行完了。这时，主线程就可以放心大胆地执行该任务了。当然，该**异步任务**一旦被执行，对于主线程而言也就不再是**异步**而是**同步**的了。
 
+### 一次正确的Event Loop执行顺序:
+其实上述任务队列中的任务叫做宏任务(macrotask),又叫task。同步代码也是一种宏任务。
+
+除了宏任务之外，还有一种微任务(microtask),又叫job。
+
+- 宏任务包括:script(包括同步js代码)、setTimeout、 setInternal、setImmeidate(非标准)、I/O、UI rendering
+- 微任务包括: promise等
+
+一次正确的Event Loop执行顺序:
+
+- (1)执行同步代码，这属于宏任务
+- (2)执行栈为空（由执行环境，也叫执行上下文组成的），查询是否有微任务需要执行
+- (3)执行所有微任务
+- (4)必要的话渲染UI
+- (5)开始下一轮Event Loop，执行下一个宏任务（task队列里的下一段异步代码）
 
 ## 2. setTimeout
 在理解了JavaScript运行机制后，理解setTimeout就很容易了。
@@ -58,10 +73,6 @@ JavaScript主线程在遇到代码setTimeout(cb, n)时，要做的事情为：**
 当然，还有情况是，后一个任务的加入时间早于前一个任务（比如delay1远大于delay2）：
 <img src="img/jsMechanism&setTimeout6.png" alt="jsMechanism&setTimeout6.png">
 
-## 更多
-事实上，仅仅了解以上这些知识对于恰当地使用setTimeout延迟以达到优化网站的目的是远远不够的。
-
-除此之外，还需要对load与DOMContentLoaded事件的触发、DOM解析过程，以及async JavaScript、defer JavaScript都有着深刻的认识。对于这几个方面，我将在接下来的几篇文章中分享我的理解，敬请期待。
 
 ## 参考资料
 setTimeout的那些事：
@@ -69,3 +80,5 @@ setTimeout的那些事：
 
 JavaScript运行机制详解：
 <http://www.ruanyifeng.com/blog/2014/10/event-loop.html>
+
+INTERVIEW-MAP:2018年08月刊
