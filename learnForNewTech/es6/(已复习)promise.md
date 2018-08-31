@@ -126,7 +126,7 @@ Promise.all(iterable)
 ```
 
 param:
-- iterable: 一个可迭代对象，如Array或String。
+- iterable: 一个可迭代对象，如Array。
 	- 如果iterable是一个空的可迭代对象，则返回一个已完成(already resolved)状态的promise;
 	- 如果iterable中不包含任何promise,则返回一个异步完成(asynchronously resolved)状态的promise;
 	- 其他情况下返回一个处理中(pending)状态的promise。这个返回的 promise 之后会在所有的 promise 都完成或有一个 promise 失败时异步地变为完成(resolved)或失败(rejected)。
@@ -147,10 +147,10 @@ Promise.all([p1,p2,p3]).then(values => {
 > 注意: Promise.all当且仅当传入的可迭代对象为空时为同步，其他都是异步的
 ```js
 var p = Promise.all([]); // will be immediately resolved
-var p2 = Promise.all([1337, "hi"]); // non-promise values will be ignored, but the evaluation will be done asynchronously
+var p2 = Promise.all([1337, "hi"]); // 
 
 console.log(p);//Promise {<resolved>: Array(0)}
-console.log(p2);//Promise {<pending>}
+console.log(p2);//Promise {<pending>} //立刻执行console.log(p2)是pending,过一会儿执行console.log(p2)是resolved;立刻直接输入p2也得到的是resolved
 setTimeout(function(){
     console.log(p1);//Promise {<resolved>: Array(0)}
     console.log(p2);//Promise {<resolved>: Array(2)}
