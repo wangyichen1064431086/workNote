@@ -243,7 +243,7 @@ In addition to compression, headers specify whether and how to cache the page, a
 
 > Notice the header that sets Content-Type to text/html. The header instructs the browser to render the response content as HTML, instead of say downloading it as a file. The browser will use the header to decide how to interpret the response, but will consider other factors as well, such as the extension of the URL.
 
-> 注意响应头将Content-Type设置为tex /html。响应头指示浏览器将响应内容渲染为HTML，而不是将其作为文件下载。浏览器将根据响应头来决定如何解释响应，但也会考虑其他因素，比如URL的扩展。
+> 注意响应头将Content-Type设置为text /html。响应头指示浏览器将响应内容渲染为HTML，而不是将其作为文件下载。浏览器将根据响应头来决定如何解释响应，但也会考虑其他因素，比如URL的扩展。
 
 
 ### 8. The browser begins rendering the HTML：浏览器开始渲染HTML
