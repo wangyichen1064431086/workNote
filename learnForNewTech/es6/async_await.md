@@ -8,7 +8,7 @@ async function name([param[, param[, ... param]]]) {
    statements
 }
 
--name 方法的名字。
+- name 方法的名字。
 - param 传递给方法的参数名。
 - statements 方法体的语句。
 

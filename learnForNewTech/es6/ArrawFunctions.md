@@ -58,12 +58,13 @@
 ##### 1. 箭头函数捆绑是很松散的
 
 	你需要将箭头函数用()括起来：
-		
+
+```js
 		console.log(typeof () => {}) //SyntaxError
 		console.log(typeof (() => {})) // OK
-
+```
 ##### 2. 不能在箭头函数的参数后面换行
-		
+```js	
 		const func1 = (x, y) // SyntaxError
 	=> {
 	    return x + y;
@@ -87,7 +88,8 @@
 	    y
 	) => {
 	  	return x+y;
-	}		
+	}	
+```	
 ##### 3. You can’t use statements as expression bodies
 ###### 	Expressions vs statements
 	Expressions(表达式)产生值,eg:
