@@ -92,4 +92,12 @@ class ListItem extends React.Component {
   }
 }
 ```
+
 ### 3. 无嵌套关系的组件传值
+
+```js
+import 'EventEmitter' from 'events';
+
+const emitter
+
+```
