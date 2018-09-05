@@ -38,9 +38,7 @@ Ajax确实是异步的，***它是由浏览器新开一个线程请求（JS是�
 
 ## 1.5 Node的应用场景
 - I/O密集型
-- 等等等等
-
-
+- CPU不密集
 
 # Process
 ## process.env

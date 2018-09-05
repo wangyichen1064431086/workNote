@@ -6,6 +6,9 @@
 官网<https://webpack.github.io>
 
 中文网站<https://webpack.docschina.org/>
+
+配置示例文档<https://webpack.docschina.org/configuration/>
+
 #### 作用
 为浏览器打包CommonJs/AMD模块。
 
