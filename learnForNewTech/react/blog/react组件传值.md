@@ -1,5 +1,5 @@
 ### 1. 子组件向父组件传值
-父组件
+父组件Header:
 ```js
 import Nav from 'Nav.js';
 class Header extends React.Component {
@@ -8,6 +8,7 @@ class Header extends React.Component {
     this.state = {
 
     }
+    this.callbackForNav = this.callbackForNav.bind(this);
   }
   callbackForNav({ selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName }) {
     this.setState({ 
@@ -23,7 +24,7 @@ class Header extends React.Component {
 }
 ```
 
-Nav:
+子组件Nav:
 ```js
 class Nav extends React.Component {
   constructor() {
@@ -41,7 +42,7 @@ class Nav extends React.Component {
     const {selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName} = this.state;
     this.props.callbackFunc({selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName}) 
   }
-  clickSubChannle() {
+  clickSubChannel() {
      this.setState({
         selectedTopChannelOrder: topOrder,
         selectedTopChannelName: topName,
@@ -54,6 +55,10 @@ class Nav extends React.Component {
         selectedSubChannelOrder: subOrder,
         selectedSubChannelName: subName
     });
+  }
+
+  render() {
+    return (...)
   }
 }
 ```
@@ -96,8 +101,48 @@ class ListItem extends React.Component {
 ### 3. 无嵌套关系的组件传值
 
 ```js
-import 'EventEmitter' from 'events';
+import {EventEmitter} from 'events';
 
-const emitter
+const emitter = new EventEitter();
+
+class A extends React.Component {
+  clickHandler(data,e) {
+    this.setState({
+      ...
+    });
+    emitter.emit('theclick', data);
+  }
+  render() {
+    const data = 'xxx';
+    return (<div onClick={this.clickHandler.bind(this, data)} />)
+  }
+}
+
+```
+App containing A and B:
+```js
+import {EventEmitter} from 'events';
+
+const emitter = new EventEitter();
+
+class App extends React.Component {
+  componentDidMount() {
+    this.listenerForTheClick = emitter.on('theclick', (data) => {
+      this.setState({
+        propForB: data;
+      })
+    })
+  }
+  componentWillUnmount() {
+    emitter.remove(this.listenerForTheClick);
+  }
+
+  render() {
+    return (
+      <B someprop={this.state.propForB} />
+      <A />
+    )
+  }
+}
 
 ```

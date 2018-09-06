@@ -30,7 +30,7 @@ export default {
       format: 'umd' //生成的包的格式。下列之一:
       /**
        * amd-异步模块定义，用于像RequireJS这样的模块加载器
-       * cjs-CommonJS,适用于Node和Broserify/Webpack
+       * cjs-CommonJS,适用于Node和Browserify/Webpack
        * es-ES模块文件
        * iife-具有自动执行功能，适合作为<script>标签。（如果要为应用程序创建一个捆绑包，您可能想要使用它，因为它会使文件大小变小。）
        * umd-通用模块定义，以amd,cjs和iife为一体
@@ -38,14 +38,7 @@ export default {
       
     },
     {
-      name:'FtcLogin',
       sourcemap: true,
-      
-      globals:{
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      },
-      
       file: './build/index.es.js',
       format: 'es'
     },
@@ -103,4 +96,3 @@ export default {
 ### 四、几个难点
 
 #### 1. globas和external的区别
-<>
