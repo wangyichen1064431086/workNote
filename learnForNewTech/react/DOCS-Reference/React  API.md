@@ -23,8 +23,8 @@ React.Children.count(children)
 ```jsx
 React.cloneElement(
   element,
-  [props],
-  [...children]
+  props,
+  ...children
 )
 
 ```
