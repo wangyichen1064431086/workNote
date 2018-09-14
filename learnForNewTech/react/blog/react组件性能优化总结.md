@@ -3,6 +3,8 @@
 
 React的Virtual DOM就是尽可能地减少浏览器的重排和重绘。
 
+React的shouldComponentUpdate方法默认都返回true，即始终都会执行render方法，然后做virtual DOM比较，并得出是否需要做真实的DOM更新。这往往会带来许多不必要的渲染。如果shouldComponentUpdate返回false，那么就不再向下执行生命周期方法。
+
 从React渲染过程来看，如何防止不必要的渲染是解决问题的关键。
 
 ## 性能优化的具体办法
@@ -19,7 +21,7 @@ React的Virtual DOM就是尽可能地减少浏览器的重排和重绘。
 - 过程没有副作用：即不能改变外部状态
 - 没有额外的状态依赖：即方法内部的状态都只能在方法的生命周期内存活，这意味着不能在方法内使用共享的变量。
 
-纯函数非常方便进行方法级别的测试及重构，它可以让程序具有良好的扩展性及适应性。纯函数是函数式变成的基础。
+纯函数非常方便进行方法级别的测试及重构，它可以让程序具有良好的扩展性及适应性。纯函数是函数式编程的基础。
 
 React组件本身就是纯函数，即传入指定props得到一定的Virtual DOM，整个过程都是可预测的。
 
@@ -98,8 +100,81 @@ render() {
 ##### 在设置子组件的时候要在父组件级别重写shouldComponentUpdate
 
 ### 4.运用immutable
+#### 相关重要概念: Immutable Data
+##### Immutable Data概述
 JavaScript中对象一般是可变的，因为使用引用赋值，新的对象的改变将影响原始对象。为了解决这个问题是使用深拷贝或者浅拷贝，但这样做又造成了CPU和内存的浪费。
 
 Immutable data很好地解决了这个问题。
 
 Immutable data就是一旦创建，就不能再更改的数据。对Immutable对象进行修改、添加或删除操作，都会返回一个新的Immutable对象。**Immutable实现的原理是持久化的数据结构。即使用旧数据创建新数据时，保证新旧数据同时可用且不变。同时为了避免深拷贝带来的性能损耗，Immutable使用了结构共享(structural sharing),即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其他节点则进行共享。**
+
+Immutable.js库最重要的3种数据结构是:
+- Map:键值对集合，对应于Object，ES6也有专门的Map对象
+- List：有序可重复的列表，对应于Array
+- ArraySet:无序且不可重复的列表
+
+##### Immutable Data的优点:
+- 降低了“可变”带来的复杂度；
+- 节省内存: Immutable使用结构共享尽量复用内存，没有被引用的对象会被垃圾回收:
+ ```js
+  import Map from 'immutable';
+  let a = Map({
+    select:'users',
+    filter: Map({name: 'Cam'})
+  });
+  let b=a.set('select', 'people');
+  a === b; //false
+  a.get('filter') === b.get('filter');//true
+ ```
+ a和b共享了没有变化的filter节点。
+- 易于实现撤销/重做、赋值/粘贴这些功能：因为每次数据都是不一样的，只要把这些数据放到一个数组里存储起来，想退回到哪里就可以退回到哪里。
+- 拥抱函数式编程: Immutable本来就是函数式编程中的概念。只要输入一样，输出必定一样
+
+##### 使用Immutable Data比较对象：
+两个Immutable对象可以使用===来比较，这样是直接比较内存地址，其性能最好。即使两个对象的值相等，也会返回false。（原生JS也是这样）
+```js
+let map1 = Immutable.Map({a:1, b:1, c:1});
+let map2 = Immutable.Map({a:1, b:1, c:1});
+map1 === map2;//false
+```
+
+如果要直接比较对象的值，可以用Immutable.is来做**值比较**：
+```js
+Immutable.is(map1, map2);
+```
+Immutable.is比较的是两个对象的hashCode或valueOf(对于JavaScript对象)。由于Immutable内部使用了trie数据结构(字典树，单词查找树)来存储，只要两个对象的hashCode相等值就是一样的。该算法避免了深度遍历比较，性能非常好。
+
+#### 具体办法
+上述方式3.pureRender中使用'react-addons-pure-render-mixin'库重写shouldComponentUpdate方法(引用比较)，也可以自己写一个方法进行引用比较。当然，也可以用深拷贝或者深比较，但是深拷贝和深比较都非常的昂贵。
+
+使用Immutable.js的===和is方法来进行比较就能知道是否需要render,而且这个操作成本几乎为零，可以极大地提高性能。如下修改shouldComponentUpdate:
+
+```js
+import React from 'react';
+import {is} from 'immutable';
+
+class App extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const thisProps = this.props || {};
+    const thisState = this.state || {};
+
+    if (Object.keys(thisProps).length !== Object.keys(nextProps).length || Object.keys(thisState).length !== Object.keys(nextState).length) {
+      return true;
+    }
+
+    for (const key in nextProps) {
+      if (nextProps.hasOwnProperty(key) && !is(thisProps[key], nextProps[key])) {
+        return true;
+      }
+    }
+
+    for (const key in nextState) {
+      if (nextState.hasOwnProperty(key) && !is(thisState[key],nextState[key])) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+}
+```
