@@ -42,10 +42,6 @@ module.exports = {
      - filename: '[name].js'用于多个入口chunk
      - filename:"[chunkhash].js", // 使用基于每个 chunk 内容的 hash
      - filename: '[name].[hash].bundle.js'//使用每次构建过程中，唯一的 hash 生成
-
-
-
-
     */
     publicPath: '/static/',
     /*此选项指定在浏览器中所引用的「此输出目录对应的公开 URL」

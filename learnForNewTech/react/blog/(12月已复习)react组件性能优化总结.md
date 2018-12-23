@@ -13,6 +13,7 @@ React的shouldComponentUpdate方法默认都返回true，即始终都会执行re
 
 在合适的情况下，都应该必须使用无状态组件。**无状态组件不会像React.createClass和ES6 class会在调用时创建新实例，它创建时始终保持了一个实例，避免了不必要的检查和内存分配，做到了内部优化。**
 
+***但是由于无状态组件没有shouldComponentUpdate方法，它每次都会重新渲染 virtual DOM, 所以如果是频繁变化的组件应该是用无状态组件。如果组件不变的话，还是不要使用为好。***
 
 ### 2. 拆分组件为子组件，对组件做更细粒度的控制
 #### 相关重要概念： 纯函数
@@ -59,6 +60,27 @@ class App extends React.Component {
 ```
 它的原理是对object(包括props和state)做浅比较，即引用比较，非值比较。比如只用关注props中每一个是否全等(如果是prop是一个对象那就是只比较了地址，地址一样就算是一样了)，而不用深入比较。
 
+手动实现该浅比较：
+```js
+function shallowEqual(obj, newObj) {
+  if(obj === newObj) {
+    retutn true
+  }
+  const objKeys = Object.keys(obj)
+  const newObjKeys = Object.keys(newObj)
+  if(objKeys.length !== newObjKeys.length) {
+    return false
+  }
+  return objKeys.every(key => newObj[key] === obj[key])
+}
+
+function shouldComponentUpdate(nextProps, nextState){
+  if(shallowEqual(this.props, nextProps) && shallowEqual(this.state, nextState)) {
+    return false
+  }
+  return true
+}
+```
 ##### (2)优化PureRender
 避免无论如何都会触发shouldComponentUpdate返回true的代码写法。
 

@@ -1,4 +1,12 @@
 ### 1. 子组件向父组件传值
+#### 思路
+简单来说，就是父组件中定义了一个方法（funcA)，这个方法是（value1,value2...)=> {this.setState({})}。即可以通过一些参数值更新父组件的 state。
+
+然后，这个 funcA 作为子组件的一个 props(propsB) 的值，即 <子组件 propsB = funcA />。
+
+子组件进行一些操作时，如发生了 onClick 事件，那么此时 子组件执行 this.props.propsB(value1, value2,...) ，就是执行了父组件的方法 funcA。执行funcA, 父组件就获得了最新的 state 值。
+
+#### 实践
 父组件Header:
 ```js
 import Nav from 'Nav.js';
@@ -63,12 +71,16 @@ class Nav extends React.Component {
 }
 ```
 ### 2. 跨级组件传值
-利用context
+#### 思路
+利用context：
+- 父组件设置 static childContextTypes 、 getChildContextTypes() => ({key:value})
+- 子组件设置 static contextTypes，使用 数据 this.context.key
 
+#### 实践
 父组件:
 ```js
 class List extends React.Component {
-  static childContextType = {
+  static childContextTypes = {
     color:PropTypes.string
   }
 
@@ -115,6 +127,20 @@ class A extends React.Component {
   render() {
     const data = 'xxx';
     return (<div onClick={this.clickHandler.bind(this, data)} />)
+  }
+}
+
+// 另一种写法
+class A extends React.Component {
+  clickHandler = (data,e) => {
+    this.setState({
+      ...
+    });
+    emitter.emit('theclick', data);
+  }
+  render() {
+    const data = 'xxx';
+    return (<div onClick={(e) => this.clickHandler(data, e)} />)
   }
 }
 

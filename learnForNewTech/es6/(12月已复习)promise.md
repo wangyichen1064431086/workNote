@@ -79,7 +79,7 @@ Eg:使用Promise构造函数构造一个promise对象实例:
 
 ```js
 var promise1 = new Promise(function(resolve, reject) {
-	setTimeout(resolve, 1000, 'foo');//即1s后执行resolve(1)
+	setTimeout(resolve, 1000, 'foo');//即1s后执行resolve('foo')
 });
 
 console.log(promise1);//Promise {<resolved>: "foo"}
